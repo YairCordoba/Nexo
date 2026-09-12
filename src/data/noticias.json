@@ -1,0 +1,134 @@
+[
+  {
+    "id": 1,
+    "titulo": "La tecnología transforma los procesos educativos",
+    "categoria": "Educación",
+    "imagen": "assets/images/educacion-1.jpg",
+    "resumen": "Las nuevas herramientas digitales están cambiando la educación en las aulas modernas.",
+    "contenido": "Las nuevas herramientas digitales están cambiando la educación en las aulas modernas. La integración de tablets y pizarras interactivas ha demostrado mejorar el rendimiento de los alumnos significativamente. Profesores de todo el país se están capacitando en el uso de Inteligencia Artificial para personalizar el aprendizaje de cada estudiante, adaptándose a sus ritmos y necesidades individuales.",
+    "autor": "Redacción Nexo",
+    "fecha": "2026-09-01",
+    "destacada": true
+  },
+  {
+    "id": 2,
+    "titulo": "El auge de la educación a distancia pospandemia",
+    "categoria": "Educación",
+    "imagen": "assets/images/educacion-2.jpg",
+    "resumen": "Cómo las universidades están adaptando sus currículos a modalidades híbridas permanentemente.",
+    "contenido": "Cómo las universidades están adaptando sus currículos a modalidades híbridas permanentemente. Las instituciones de educación superior han reportado un incremento del 40% en matrículas virtuales. La flexibilidad de horarios y la posibilidad de estudiar desde cualquier lugar del mundo han democratizado el acceso a programas de posgrado de excelencia.",
+    "autor": "María González",
+    "fecha": "2026-09-05",
+    "destacada": false
+  },
+  {
+    "id": 3,
+    "titulo": "Nuevas pedagogías: Aprendizaje basado en proyectos reales",
+    "categoria": "Educación",
+    "imagen": "assets/images/educacion-3.jpg",
+    "resumen": "El cambio de paradigma desde la memorización hacia la resolución de problemas.",
+    "contenido": "El cambio de paradigma desde la memorización hacia la resolución de problemas. Escuelas secundarias están implementando currículos donde los estudiantes dedican el 60% de su tiempo a proyectos con impacto comunitario. Esta metodología no solo mejora la retención de conocimientos, sino que desarrolla habilidades blandas cruciales para el mercado laboral actual.",
+    "autor": "Carlos Pérez",
+    "fecha": "2026-09-10",
+    "destacada": false
+  },
+  {
+    "id": 4,
+    "titulo": "Avances revolucionarios en Inteligencia Artificial Generativa",
+    "categoria": "Tecnología",
+    "imagen": "assets/images/tecnologia-1.jpg",
+    "resumen": "Los nuevos modelos de lenguaje prometen revolucionar el trabajo creativo y técnico.",
+    "contenido": "Los nuevos modelos de lenguaje prometen revolucionar el trabajo creativo y técnico. Empresas líderes en tecnología han lanzado versiones mejoradas de sus IAs capaces de programar, diseñar y redactar con una precisión casi humana. Este hito plantea nuevos debates éticos sobre el futuro del trabajo y los derechos de autor en el entorno digital.",
+    "autor": "Redacción Nexo",
+    "fecha": "2026-09-02",
+    "destacada": true
+  },
+  {
+    "id": 5,
+    "titulo": "Computación Cuántica: El próximo salto en procesamiento",
+    "categoria": "Tecnología",
+    "imagen": "assets/images/tecnologia-2.jpg",
+    "resumen": "Investigadores logran mantener la estabilidad de los qubits por tiempo récord.",
+    "contenido": "Investigadores logran mantener la estabilidad de los qubits por tiempo récord. Este avance acerca a la humanidad a la creación de ordenadores cuánticos comerciales. Estas máquinas podrán resolver problemas complejos en segundos, lo que actualmente le tomaría miles de años a las supercomputadoras más potentes del planeta.",
+    "autor": "Luis Ramírez",
+    "fecha": "2026-09-08",
+    "destacada": false
+  },
+  {
+    "id": 6,
+    "titulo": "Ciberseguridad en la era de los dispositivos conectados (IoT)",
+    "categoria": "Tecnología",
+    "imagen": "assets/images/tecnologia-3.jpg",
+    "resumen": "La creciente vulnerabilidad de los hogares inteligentes frente a los ataques cibernéticos.",
+    "contenido": "La creciente vulnerabilidad de los hogares inteligentes frente a los ataques cibernéticos. Con más de 50 mil millones de dispositivos conectados a nivel global, los expertos advierten sobre la falta de protocolos de seguridad estandarizados. Se recomienda a los usuarios actualizar constantemente sus sistemas y utilizar redes segmentadas para proteger sus datos personales.",
+    "autor": "Ana Silva",
+    "fecha": "2026-09-11",
+    "destacada": false
+  },
+  {
+    "id": 7,
+    "titulo": "El renacer del turismo sostenible en zonas rurales",
+    "categoria": "Turismo",
+    "imagen": "assets/images/turismo-1.jpg",
+    "resumen": "Viajeros prefieren destinos ecológicos y experiencias que apoyen la economía local.",
+    "contenido": "Viajeros prefieren destinos ecológicos y experiencias que apoyen la economía local. Pueblos rurales que antes sufrían de despoblación ahora se benefician del turismo sostenible. Los visitantes buscan conectar con la naturaleza y las tradiciones locales, dejando una huella de carbono mínima y contribuyendo directamente al bienestar de las comunidades.",
+    "autor": "Redacción Nexo",
+    "fecha": "2026-09-03",
+    "destacada": true
+  },
+  {
+    "id": 8,
+    "titulo": "Tecnología aplicada para mejorar la experiencia del turista",
+    "categoria": "Turismo",
+    "imagen": "assets/images/turismo-2.jpg",
+    "resumen": "Realidad aumentada y apps móviles transforman la manera de explorar ciudades históricas.",
+    "contenido": "Realidad aumentada y apps móviles transforman la manera de explorar ciudades históricas. Museos y zonas arqueológicas están implementando recorridos inmersivos. Con solo apuntar la cámara del celular, los turistas pueden ver reconstrucciones en 3D de ruinas antiguas y recibir información multilingüe en tiempo real, enriqueciendo su visita cultural.",
+    "autor": "Diego Torres",
+    "fecha": "2026-09-07",
+    "destacada": false
+  },
+  {
+    "id": 9,
+    "titulo": "Nuevas políticas para regular el turismo masivo",
+    "categoria": "Turismo",
+    "imagen": "assets/images/turismo-3.jpg",
+    "resumen": "Capitales europeas implementan tasas turísticas para mitigar el impacto en residentes.",
+    "contenido": "Capitales europeas implementan tasas turísticas para mitigar el impacto en residentes. Ciudades como Venecia y Barcelona han establecido nuevos límites al número de visitantes diarios. Estas medidas buscan equilibrar el beneficio económico del turismo con la calidad de vida de los habitantes, previniendo la gentrificación excesiva y la saturación de servicios públicos.",
+    "autor": "Elena Castro",
+    "fecha": "2026-09-12",
+    "destacada": false
+  },
+  {
+    "id": 10,
+    "titulo": "El comercio electrónico alcanza cifras récord este trimestre",
+    "categoria": "Comercio",
+    "imagen": "assets/images/comercio-1.jpg",
+    "resumen": "Las ventas online superan las expectativas gracias a la mejora en la logística de última milla.",
+    "contenido": "Las ventas online superan las expectativas gracias a la mejora en la logística de última milla. Las pequeñas y medianas empresas están liderando este crecimiento tras adoptar plataformas digitales robustas. Los consumidores valoran cada vez más la rapidez en las entregas y las políticas de devolución flexibles como factores clave para su decisión de compra.",
+    "autor": "Redacción Nexo",
+    "fecha": "2026-09-04",
+    "destacada": true
+  },
+  {
+    "id": 11,
+    "titulo": "La evolución de las tiendas físicas hacia centros de experiencia",
+    "categoria": "Comercio",
+    "imagen": "assets/images/comercio-2.jpg",
+    "resumen": "Marcas tradicionales reinventan sus espacios para ofrecer valor más allá de la transacción.",
+    "contenido": "Marcas tradicionales reinventan sus espacios para ofrecer valor más allá de la transacción. Lejos de desaparecer, el retail físico se está transformando. Las tiendas ahora funcionan como showrooms interactivos donde los clientes pueden probar productos con tecnologías inmersivas y participar en eventos comunitarios, integrando lo mejor del mundo físico y digital.",
+    "autor": "Laura Gómez",
+    "fecha": "2026-09-06",
+    "destacada": false
+  },
+  {
+    "id": 12,
+    "titulo": "Criptomonedas como medio de pago en el comercio minorista",
+    "categoria": "Comercio",
+    "imagen": "assets/images/comercio-3.jpg",
+    "resumen": "Más establecimientos aceptan activos digitales pese a la volatilidad del mercado.",
+    "contenido": "Más establecimientos aceptan activos digitales pese a la volatilidad del mercado. Gracias a nuevas pasarelas de pago que convierten criptomonedas a dinero fíat instantáneamente, los comercios están eliminando el riesgo cambiario. Esta tendencia atrae a un segmento de consumidores jóvenes y tecnológicamente adeptos que prefieren alternativas a la banca tradicional.",
+    "autor": "Javier Morales",
+    "fecha": "2026-09-09",
+    "destacada": false
+  }
+]

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favoritos - Nexo Noticias</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <header>
+        <div class="container navbar">
+            <a href="../../index.html" class="logo">
+                <span class="logo-main">NEXO</span>
+                <span class="logo-sub">Noticias.</span>
+            </a>
+            
+            <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="../../index.html">Inicio</a></li>
+                    <li><a href="noticias.html">Noticias</a></li>
+                    <li><a href="favoritos.html" class="active">Favoritos</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+            
+            <div class="nav-actions">
+                <button class="nav-toggle" id="navToggle">☰</button>
+                <span style="font-size: 1.2rem; cursor: pointer;">🔍</span>
+                <span style="font-size: 1.2rem; cursor: pointer;">🌙</span>
+                <a href="contacto.html" class="btn btn-primary" style="margin-left: 1rem;">Contact →</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container" style="padding-top: 3rem;">
+            <div style="border-bottom: 2px solid var(--color-primary); padding-bottom: 1rem; margin-bottom: 3rem;">
+                <h1 style="font-size: 3rem; margin: 0; line-height: 1;">Mis Noticias Guardadas</h1>
+            </div>
+            
+            <div class="grid grid-cols-3" id="contenedorFavoritos">
+                <!-- JS inyectará las tarjetas aquí -->
+            </div>
+            
+            <div id="mensajeVacioFavs" style="display: none; text-align: center; padding: 5rem 2rem; background: #fafafa; border: 1px dashed var(--color-border);">
+                <h3 style="font-size: 1.5rem; font-family: var(--font-heading); margin-bottom: 1rem; color: var(--color-primary);">No tienes noticias guardadas todavía.</h3>
+                <p style="color: var(--color-text-light); margin-bottom: 2rem;">Explora nuestras noticias y guarda las que quieras consultar después.</p>
+                <a href="noticias.html" class="btn btn-outline">Explorar noticias →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none;">
+                <p>&copy; 2026 Nexo Noticias. Proyecto Académico.</p>
+                <p>Designed for Quietly Thinking</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/utils.js"></script>
+    <script src="../js/favoritos.js"></script>
+    <script src="../js/app.js"></script>
+</body>
+</html>

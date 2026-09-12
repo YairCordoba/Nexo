@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle - Nexo Noticias</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <header>
+        <div class="container navbar">
+            <a href="../../index.html" class="logo">
+                <span class="logo-main">NEXO</span>
+                <span class="logo-sub">Noticias.</span>
+            </a>
+            
+            <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="../../index.html">Inicio</a></li>
+                    <li><a href="noticias.html" class="active">Noticias</a></li>
+                    <li><a href="favoritos.html">Favoritos</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+            
+            <div class="nav-actions">
+                <button class="nav-toggle" id="navToggle">☰</button>
+                <span style="font-size: 1.2rem; cursor: pointer;">🔍</span>
+                <span style="font-size: 1.2rem; cursor: pointer;">🌙</span>
+                <a href="contacto.html" class="btn btn-primary" style="margin-left: 1rem;">Contact →</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container" style="padding-top: 2rem;">
+            <div style="margin-bottom: 2rem;">
+                <a href="noticias.html" style="color: var(--color-text-light); text-decoration: none; font-size: 0.9rem;">&larr; Volver a artículos</a>
+            </div>
+            
+            <div id="detalleNoticia">
+                <!-- JS inyectará el contenido aquí -->
+                <div style="padding: 4rem; text-align: center;">Cargando historia...</div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none;">
+                <p>&copy; 2026 Nexo Noticias. Proyecto Académico.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/utils.js"></script>
+    <script src="../js/favoritos.js"></script>
+    <script src="../js/noticias.js"></script>
+    <script src="../js/app.js"></script>
+</body>
+</html>
