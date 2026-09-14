@@ -1,37 +1,108 @@
-# Documentación de Requisitos
+# Requisitos - Plataforma Web de Noticias
 
-## Requisitos Funcionales
+**Proyecto:** Nexo Noticias
+**Responsable de la revisión:** Camilo Andres Escobar Mazo
+**Correo:** candescobar@poligran.edu.co
+**Fuente:** *Orientaciones para las entregas del módulo Front End*, agosto de 2026
 
-* **RF-01** — El sistema debe permitir visualizar las noticias destacadas en la página de inicio.
-* **RF-02** — El sistema debe permitir ver una lista completa de noticias.
-* **RF-03** — El sistema debe permitir filtrar noticias por categorías (Educación, Tecnología, Turismo, Comercio).
-* **RF-04** — El sistema debe permitir buscar noticias mediante una barra de búsqueda por texto.
-* **RF-05** — El sistema debe permitir consultar el detalle completo de cada noticia (título, imagen, autor, contenido).
-* **RF-06** — El sistema debe permitir agregar y eliminar noticias de una lista de "Favoritos".
-* **RF-07** — El sistema debe persistir los favoritos utilizando `localStorage` para que no se pierdan al recargar.
-* **RF-08** — El sistema debe proveer un formulario de contacto con validaciones.
-* **RF-09** — El sistema debe proveer un panel de administración para crear nuevas noticias y leer las existentes.
-* **RF-10** — El sistema debe permitir editar (modificar) los datos de noticias existentes.
-* **RF-11** — El sistema debe permitir eliminar noticias existentes desde el panel administrativo previa confirmación.
-* **RF-12** — Debe existir un método oculto por palabra clave ("nexoadd") para agregar noticias rápidamente.
+## 1. Propósito y alcance
 
-## Requisitos No Funcionales
+Este documento consolida únicamente los requisitos contenidos en las orientaciones del tutor. Las ideas y tecnologías recomendadas se presentan por separado para no confundirlas con obligaciones de la entrega.
 
-* **RNF-01** — La aplicación debe ser responsive, adaptándose a móviles, tablets y desktop.
-* **RNF-02** — El código fuente debe utilizar HTML5 semántico (`<header>`, `<main>`, `<article>`, etc).
-* **RNF-03** — Debe ser compatible con los navegadores modernos (Chrome, Firefox, Safari, Edge).
-* **RNF-04** — La interfaz de usuario debe tener una estética neutra, editorial y evitar excesos de animaciones o elementos artificiales.
-* **RNF-05** — El código debe estar organizado en módulos JavaScript (`utils.js`, `app.js`, etc.) y archivos CSS separados.
+La aplicación será una plataforma web de noticias educativas, tecnológicas, turísticas o comerciales. Permitirá explorar noticias, consultar su detalle y realizar interacciones básicas de favoritos, contacto y gestión de contenido.
 
-## Historias de Usuario
+## 2. Actores
 
-1. **Como** visitante, **quiero** ver las noticias más importantes en el inicio **para** enterarme rápidamente de la actualidad.
-2. **Como** lector, **quiero** filtrar por categoría "Tecnología" **para** leer solo sobre mis temas de interés.
-3. **Como** usuario, **quiero** guardar una noticia en favoritos **para** leerla más tarde con calma.
-4. **Como** usuario, **quiero** usar el buscador **para** encontrar noticias sobre un tema específico rápidamente.
-5. **Como** usuario recurrente, **quiero** que mis favoritos sigan ahí al volver a entrar **para** no perder mi colección.
-6. **Como** visitante, **quiero** llenar un formulario de contacto **para** enviar sugerencias al equipo.
-7. **Como** administrador, **quiero** crear una noticia nueva **para** mantener el sitio actualizado.
-8. **Como** administrador, **quiero** borrar una noticia **para** eliminar contenido obsoleto o erróneo.
-9. **Como** lector de móvil, **quiero** un menú adaptable **para** navegar fácilmente desde mi celular.
-10. **Como** lector, **quiero** ver quién escribió la noticia y la fecha **para** evaluar la relevancia de la información.
+- **Usuario:** explora noticias, consulta detalles, gestiona favoritos y utiliza el formulario de contacto.
+- **Responsable de contenido:** crea y elimina noticias mediante el mini CRUD. Las orientaciones no exigen autenticación ni administración de roles.
+
+## 3. Requisitos funcionales
+
+| ID | Requisito | Criterio de aceptación |
+| :--- | :--- | :--- |
+| RF-01 | El sistema debe mostrar un catálogo de noticias mediante tarjetas. | Cada tarjeta presenta imagen, nombre o título, descripción breve y una acción para ver más. |
+| RF-02 | El usuario debe poder consultar el detalle de una noticia. | El detalle muestra información completa, imagen representativa y una acción para agregar a favoritos o contactar. |
+| RF-03 | El usuario debe poder gestionar noticias favoritas. | El usuario puede guardar noticias y visualizar su lista personalizada. Los datos se conservan mediante `localStorage` o `sessionStorage`. |
+| RF-04 | La aplicación debe disponer de una página de inicio. | El Home incluye header con menú, bienvenida, noticias destacadas, llamados a la acción y footer con información general. |
+| RF-05 | La aplicación debe disponer de una página de contacto. | El formulario valida campos obligatorios y un correo válido; después de un envío aceptado muestra confirmación. |
+| RF-06 | La aplicación debe ofrecer gestión básica de noticias. | El mini CRUD permite crear nuevas noticias y eliminar noticias existentes. |
+| RF-07 | El prototipo funcional debe cargar las noticias dinámicamente. | En la semana 5, las noticias se obtienen desde un archivo JSON local y se representan en la interfaz. |
+
+## 4. Requisitos no funcionales y técnicos
+
+| ID | Requisito | Entrega asociada |
+| :--- | :--- | :--- |
+| RNF-01 | La interfaz debe mantener un diseño moderno, intuitivo y coherente entre sus vistas. | Semanas 3, 5 y 7. |
+| RNF-02 | La maquetación aprobada debe corresponder con el desarrollo posterior. | Semanas 5 y 7. |
+| RNF-03 | El prototipo debe organizar por separado los archivos HTML, CSS, JavaScript, imágenes y demás recursos necesarios. | Semana 5. |
+| RNF-04 | El código fuente debe estar estructurado y comentado. | Semanas 5 y 7. |
+| RNF-05 | Las páginas deben poder visualizarse desde navegadores web. | Semanas 5 y 7. |
+| RNF-06 | La entrega final debe incorporar uso básico de Angular mediante componentes y binding. | Semana 7. |
+| RNF-07 | La aplicación final debe publicarse en GitHub Pages, Netlify, Vercel u otro servidor gratuito. | Semana 7. |
+
+## 5. Entregables
+
+### Entrega 1 - Maquetación, semana 3
+
+- Mockups del aplicativo en Figma u otra herramienta.
+- Diseño de Home, listado de noticias, detalle y contacto.
+- Descripción de la funcionalidad y los elementos de cada vista.
+- Documento final en PDF siguiendo normas APA.
+- Mockups incluidos dentro del informe.
+- Referencias bibliográficas y conclusiones.
+
+Las cuatro vistas anteriores son las maquetas expresamente solicitadas. Favoritos y mini CRUD deben describirse como funcionalidades; sus pantallas pueden añadirse si el equipo decide mostrar esos recorridos, pero no sustituyen las cuatro vistas obligatorias.
+
+### Entrega 2 - Prototipo funcional, semana 5
+
+- Desarrollo con HTML, CSS y JavaScript.
+- Renderizado dinámico de noticias desde JSON.
+- Funcionalidad de favoritos.
+- Formulario con validaciones.
+- Código estructurado y repositorio en GitHub.
+- Documento PDF que incluya la maquetación, el código fuente y la URL accesible del repositorio.
+- Tabla de contenido, referencias bibliográficas y conclusiones.
+
+### Entrega 3 - Entrega final, semana 7
+
+- Aplicación funcional completa.
+- Implementación básica de Angular con componentes y binding.
+- Código organizado y documentado.
+- Aplicación desplegada y URL del proyecto incluida en el informe.
+- Documento final en PDF bajo normas APA con funcionamiento y tecnologías utilizadas.
+- Tabla de contenido, referencias bibliográficas y conclusiones.
+- Video explicativo de máximo tres minutos mediante enlace de YouTube.
+
+## 6. Recomendaciones de las orientaciones
+
+Los siguientes elementos aparecen como ideas o tecnologías recomendadas. Son útiles, pero no deben presentarse como requisitos obligatorios sin confirmación del tutor:
+
+- Utilizar Figma para la maquetación.
+- Incorporar un encabezado atractivo con el nombre del aplicativo.
+- Usar un menú claro de al menos cinco páginas.
+- Añadir testimonios o una sección informativa.
+- Mantener visible la información de contacto.
+- Utilizar Bootstrap o Tailwind CSS.
+- Usar un archivo JSON local y `localStorage` o `sessionStorage`.
+
+## 7. Trazabilidad de la maquetación
+
+| Vista obligatoria | Requisitos representados |
+| :--- | :--- |
+| Home | RF-01 y RF-04. |
+| Listado de noticias | RF-01 y RF-07. |
+| Detalle | RF-02 y RF-03. |
+| Contacto | RF-05. |
+
+## 8. Elementos no exigidos por las orientaciones
+
+Las siguientes funciones pueden considerarse mejoras futuras, pero no forman parte del alcance obligatorio identificado en la fuente:
+
+- Búsqueda de noticias.
+- Filtros interactivos por categoría.
+- Edición de noticias.
+- Creación oculta mediante la palabra `nexoadd`.
+- Autenticación o gestión de roles.
+- Backend o base de datos remota.
+
+Si el equipo decide conservar alguna de estas funciones, debe documentarla como propuesta propia sin modificar ni renumerar los requisitos anteriores.
