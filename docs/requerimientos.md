@@ -2,7 +2,7 @@
 
 **Proyecto:** Nexo Noticias
 **Responsable de la revisión:** Camilo Andres Escobar Mazo
-**Correo:** camilo.escobar2@utp.edu.co
+**Correo:** candescobar@poligran.edu.co
 **Fuente:** *Orientaciones para las entregas del módulo Front End*, agosto de 2026
 
 ## 1. Propósito y alcance
