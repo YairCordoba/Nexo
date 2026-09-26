@@ -1,17 +1,20 @@
-/* Variables globales de la paleta de colores (Diseño Editorial, Quietly Thinking) */
+/* Variables globales de la paleta de colores (Diseño Editorial, Figma Design System) */
 :root {
-    --color-primary: #111111; /* Negro profundo para textos y acentos */
-    --color-secondary: #ffffff; /* Blanco puro de fondo */
-    --color-text: #333333; /* Gris oscuro para texto base */
-    --color-text-light: #777777; /* Gris claro para metadatos/fechas */
-    --color-border: #eaeaea; /* Gris ultra claro para bordes finos */
+    --color-primary: #1D4E38; /* Brand 600 */
+    --color-secondary: #FFFCF7; /* Neutral 0 - Fondo principal */
+    --color-tertiary: #F3EFE7; /* Neutral 50 - Fondo tarjetas/secundario */
+    --color-accent: #C2410C; /* Accent 600 */
+    --color-text: #111411; /* Texto base */
+    --color-text-light: #777974; /* Neutral 500 */
+    --color-border: #D3D4CE; /* Neutral 300 */
     --color-white: #ffffff;
+    --color-brand-light: #EEF3FF; /* Brand 50 */
     
-    /* Tipografías: Serif para títulos, Sans para ui/body */
-    --font-heading: 'Georgia', 'Times New Roman', serif;
-    --font-primary: 'Inter', 'Helvetica Neue', 'Arial', sans-serif;
+    /* Tipografías */
+    --font-heading: 'Newsreader', serif;
+    --font-primary: 'Inter', sans-serif;
     
-    --border-radius: 2px; /* Bordes casi rectos, aspecto editorial */
+    --border-radius: 12px; /* Radios más suaves como en Figma */
     --transition: all 0.2s ease-in-out;
 }
 
@@ -41,7 +44,7 @@ main {
 /* Layout y Contenedores */
 .container {
     width: 100%;
-    max-width: 1300px; /* Ancho mayor para acomodar sidebar */
+    max-width: 1200px; /* Reducido para ser más compacto */
     margin: 0 auto;
     padding: 0 2rem;
 }
@@ -77,14 +80,12 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Header general */
 header {
-    background-color: var(--color-white);
-    padding: 1.5rem 0;
-    border-bottom: 1px solid var(--color-border);
+    width: 100%;
 }
 
 /* Hero Section (Asimétrico Tipográfico) */
 .hero {
-    background-color: var(--color-white);
+    background-color: var(--color-secondary);
     padding: 4rem 0;
     margin-bottom: 0;
     text-align: left;
@@ -92,13 +93,13 @@ header {
 
 .hero-grid {
     display: grid;
-    grid-template-columns: 3fr 1fr;
-    gap: 3rem;
-    align-items: end;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
 }
 
 .hero h1 {
-    font-size: 5rem;
+    font-size: 3.5rem;
     line-height: 1.1;
     letter-spacing: -1px;
 }

@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="src/css/styles.css">
     <link rel="stylesheet" href="src/css/components.css">
@@ -17,24 +17,22 @@
     <header>
         <div class="container navbar">
             <a href="index.html" class="logo">
-                <span class="logo-main">NEXO</span>
-                <span class="logo-sub">Noticias.</span>
+                <span class="logo-main">POLITÉCNICO</span>
             </a>
             
             <nav>
                 <ul class="nav-links" id="navLinks">
                     <li><a href="index.html" class="active">Inicio</a></li>
                     <li><a href="src/pages/noticias.html">Noticias</a></li>
-                    <li><a href="src/pages/favoritos.html">Favoritos</a></li>
+                    <li><a href="src/pages/noticias.html?categoria=todas">Categorías</a></li>
                     <li><a href="src/pages/contacto.html">Contacto</a></li>
+                    <li><a href="src/pages/admin.html">Admin</a></li>
                 </ul>
             </nav>
             
             <div class="nav-actions">
                 <button class="nav-toggle" id="navToggle">☰</button>
-                <span style="font-size: 1.2rem; cursor: pointer;">🔍</span>
-                <span style="font-size: 1.2rem; cursor: pointer;">🌙</span>
-                <a href="src/pages/contacto.html" class="btn btn-primary" style="margin-left: 1rem;">Contact →</a>
+                <a href="src/pages/noticias.html" class="btn btn-primary" style="margin-left: 1rem;">Explorar</a>
             </div>
         </div>
     </header>
@@ -43,22 +41,15 @@
         <section class="hero">
             <div class="container hero-grid">
                 <div>
-                    <h1>Quietly Thinking</h1>
-                    <div class="hero-border">
-                        <!-- Aquí inyectaremos el layout hero (Noticia más destacada) -->
-                        <div id="heroFeaturedNews">
-                            <!-- JS inyectará el featured principal aquí -->
-                            <p style="color: var(--color-text-light);">Cargando historia principal...</p>
-                        </div>
-                    </div>
+                    <span style="color: var(--color-accent); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 0.5rem;">PORTADA / ACTUALIDAD</span>
+                    <h1 style="margin-bottom: 1rem;">Noticias del campus</h1>
+                    <p class="hero-subtitle" style="margin-bottom: 2rem;">Una portada editorial para descubrir lo que ocurre en el Politécnico.</p>
+                    <a href="src/pages/noticias.html" class="btn btn-primary">Ver noticias</a>
                 </div>
-                <div>
-                    <p class="hero-subtitle">Un espacio tranquilo para pensamientos pausados. Sin ruido — solo reflexión, significado y curiosidad silenciosa.</p>
-                    <a href="src/pages/noticias.html" class="btn btn-outline" style="margin-bottom: 3rem;">Explorar ahora →</a>
-                    
-                    <!-- Aquí inyectaremos la segunda noticia destacada (más pequeña) -->
-                    <div id="heroSecondaryNews">
-                        <!-- JS inyectará aquí -->
+                <div id="heroFeaturedNews" style="width: 100%; height: 100%;">
+                    <!-- JS inyectará la imagen destacada aquí -->
+                    <div style="background-color: var(--color-border); width: 100%; height: 350px; border-radius: var(--border-radius); display: flex; align-items: center; justify-content: center; color: var(--color-text-light);">
+                        IMAGEN / Destacada
                     </div>
                 </div>
             </div>
@@ -66,49 +57,25 @@
 
         <section class="container">
             <div class="section-divider">
-                <h2>Breaking News</h2>
+                <h2>Últimas noticias</h2>
                 <div class="line"></div>
             </div>
             
-            <div class="main-layout">
-                <!-- Columna Izquierda (Noticias principales horizontales) -->
-                <div id="contenedorNoticiasDestacadas">
-                    <p style="color: var(--color-text-light);">Cargando noticias...</p>
-                </div>
-                
-                <!-- Columna Derecha (Sidebar) -->
-                <aside>
-                    <h3 class="sidebar-title">Flash News</h3>
-                    <div id="sidebarNews">
-                        <!-- JS inyectará mini cards aquí -->
-                    </div>
-                    
-                    <h3 class="sidebar-title" style="margin-top: 3rem;">Top Authors</h3>
-                    <div style="margin-bottom: 2rem;">
-                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                            <div style="width: 24px; height: 24px; background: #000; color: #fff; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold;">1</div>
-                            <div>
-                                <h4 style="font-size: 1rem; margin: 0; font-family: var(--font-primary);">Redacción Nexo</h4>
-                                <span style="font-size: 0.8rem; color: var(--color-text-light);">Equipo Editorial</span>
-                            </div>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                            <div style="width: 24px; height: 24px; background: #000; color: #fff; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold;">2</div>
-                            <div>
-                                <h4 style="font-size: 1rem; margin: 0; font-family: var(--font-primary);">Carlos Pérez</h4>
-                                <span style="font-size: 0.8rem; color: var(--color-text-light);">Especialista Tech</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <h3 class="sidebar-title" style="margin-top: 3rem;">Trending Topics</h3>
-                    <div class="categories-list">
-                        <a href="src/pages/noticias.html?categoria=Educación" class="category-tag">Educación</a>
-                        <a href="src/pages/noticias.html?categoria=Tecnología" class="category-tag">Tecnología</a>
-                        <a href="src/pages/noticias.html?categoria=Turismo" class="category-tag">Turismo</a>
-                        <a href="src/pages/noticias.html?categoria=Comercio" class="category-tag">Comercio</a>
-                    </div>
-                </aside>
+            <!-- Grilla de Últimas noticias (3 columnas) -->
+            <div id="contenedorNoticiasDestacadas">
+                <p style="color: var(--color-text-light);">Cargando noticias...</p>
+            </div>
+            
+            <div class="section-divider" style="margin-top: 4rem;">
+                <h2>Explora por categoría</h2>
+                <div class="line"></div>
+            </div>
+            
+            <div class="categories-list">
+                <a href="src/pages/noticias.html?categoria=Educación" class="category-tag">Educación</a>
+                <a href="src/pages/noticias.html?categoria=Tecnología" class="category-tag">Tecnología</a>
+                <a href="src/pages/noticias.html?categoria=Turismo" class="category-tag">Turismo</a>
+                <a href="src/pages/noticias.html?categoria=Comercio" class="category-tag">Comercio</a>
             </div>
         </section>
     </main>
@@ -118,30 +85,29 @@
             <div class="footer-content">
                 <div class="footer-col">
                     <a href="index.html" class="logo" style="margin-bottom: 1.5rem;">
-                        <span class="logo-main">NEXO</span>
-                        <span class="logo-sub">Noticias.</span>
+                        <span class="logo-main" style="color: var(--color-primary);">POLITÉCNICO</span>
                     </a>
-                    <p style="max-width: 300px;">Un espacio digital para descubrir noticias y experiencias de interés educativo, tecnológico, turístico y comercial.</p>
+                    <p style="max-width: 300px;">Un espacio digital para descubrir noticias y experiencias del campus universitario.</p>
                 </div>
                 <div class="footer-col">
                     <h3>Explorar</h3>
                     <ul>
                         <li><a href="index.html">Inicio</a></li>
                         <li><a href="src/pages/noticias.html">Noticias</a></li>
-                        <li><a href="src/pages/favoritos.html">Mis Favoritos</a></li>
+                        <li><a href="src/pages/favoritos.html">Tus historias guardadas</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h3>Legal</h3>
                     <ul>
-                        <li><a href="src/pages/contacto.html">Contáctanos</a></li>
-                        <li><a href="src/pages/admin.html">Administración</a></li>
+                        <li><a href="src/pages/contacto.html">Hablemos</a></li>
+                        <li><a href="src/pages/admin.html">Panel de administración</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Nexo Noticias. Proyecto Académico.</p>
-                <p>Designed for Quietly Thinking</p>
+                <p>&copy; 2026 Politécnico. Proyecto Académico.</p>
+                <p>Desarrollado para Frontend Semana 5</p>
             </div>
         </div>
     </footer>

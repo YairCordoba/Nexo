@@ -25,79 +25,27 @@ document.addEventListener('DOMContentLoaded', async () => {
             
             if(heroFeaturedNews) {
                 heroFeaturedNews.innerHTML = `
-                    <div style="margin-bottom: 1.5rem;">
-                        <span class="card-category">● ${mainHero.categoria}</span>
-                    </div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start;">
-                        <div>
-                            <h2 style="font-size: 2.25rem; font-family: var(--font-heading); margin-bottom: 1.5rem; line-height: 1.2;">
-                                <a href="${baseUrl}src/pages/detalle.html?id=${mainHero.id}" style="color: inherit; text-decoration: none;">${mainHero.titulo}</a>
-                            </h2>
-                            <p style="color: var(--color-text-light); font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem;">
-                                ${mainHero.resumen}
-                            </p>
-                            <div style="font-size: 0.85rem; color: var(--color-text-light); display: flex; gap: 1rem; align-items: center;">
-                                <strong>${mainHero.autor}</strong>
-                                <span>${formatearFecha(mainHero.fecha)}</span>
-                            </div>
-                        </div>
-                        <div class="card-img-wrapper" style="height: 300px; margin-bottom: 0;">
-                            <img src="${mainHero.imagen ? baseUrl + mainHero.imagen : 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=800&q=80'}" class="card-img" style="border-radius: 4px;" alt="Hero">
-                        </div>
-                    </div>
-                `;
-            }
-
-            // 2. Hero Secundario (la segunda destacada)
-            const secHero = destacadas.length > 1 ? destacadas[1] : noticias[1];
-            if(heroSecondaryNews) {
-                heroSecondaryNews.innerHTML = `
-                    <div class="card-img-wrapper" style="height: 180px; margin-bottom: 1rem;">
-                        <img src="${secHero.imagen ? baseUrl + secHero.imagen : 'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=400&q=80'}" class="card-img" style="border-radius: 4px;" alt="Hero Sub">
-                    </div>
-                    <h3 style="font-size: 1.25rem; font-family: var(--font-heading); margin-bottom: 0.5rem; line-height: 1.3;">
-                        <a href="${baseUrl}src/pages/detalle.html?id=${secHero.id}" style="color: inherit; text-decoration: none;">${secHero.titulo}</a>
-                    </h3>
-                    <p style="color: var(--color-text-light); font-size: 0.9rem;">${secHero.resumen.substring(0, 80)}...</p>
-                    <div style="margin-top: 1rem; font-size: 0.8rem; color: var(--color-text-light);">
-                        <span>${formatearFecha(secHero.fecha)}</span>
+                    <div style="background-color: #E2E8E4; width: 100%; height: 350px; border-radius: var(--border-radius); display: flex; align-items: center; justify-content: center; color: var(--color-primary); font-weight: 600; font-size: 1.1rem;">
+                        IMAGEN / Destacada
                     </div>
                 `;
             }
 
             // 3. Breaking News List (Siguientes noticias)
-            const remainingNews = noticias.filter(n => n.id !== mainHero.id && n.id !== secHero.id);
-            const mainColumnNews = remainingNews.slice(0, 4);
+            const remainingNews = noticias.filter(n => n.id !== mainHero.id);
+            const mainColumnNews = remainingNews.slice(0, 3);
             
+            contenedorDestacadas.className = "grid grid-cols-3";
             contenedorDestacadas.innerHTML = mainColumnNews.map(n => `
-                <article class="card-horizontal">
-                    <div class="card-img-wrapper">
-                        <img src="${n.imagen ? baseUrl + n.imagen : 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=500&q=80'}" alt="${n.titulo}" class="card-img" style="border-radius: 4px;">
-                    </div>
-                    <div class="card-content">
-                        <div style="margin-bottom: 1rem;">
-                            <span class="card-category">● ${n.categoria}</span>
+                <article class="card" style="padding: 1.5rem; justify-content: space-between; margin-bottom: 0;">
+                    <div>
+                        <div style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--color-text-light); margin-bottom: 0.5rem;">
+                            ${formatearFecha(n.fecha)}
                         </div>
-                        <h3 class="card-title">
+                        <h3 class="card-title" style="font-size: 1.25rem;">
                             <a href="${baseUrl}src/pages/detalle.html?id=${n.id}">${n.titulo}</a>
                         </h3>
-                        <p class="card-desc">${n.resumen}</p>
-                        
-                        <div class="card-actions" style="margin-top: auto; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: var(--color-text-light);">
-                            <div style="display: flex; gap: 1rem; align-items: center;">
-                                <strong>${n.autor}</strong>
-                            </div>
-                            <div style="display: flex; gap: 1rem; align-items: center;">
-                                <span>${formatearFecha(n.fecha)}</span>
-                                <button class="btn-fav ${esFavorito(n.id) ? 'active' : ''}" 
-                                        data-id="${n.id}" 
-                                        title="Favorito"
-                                        style="font-size: 1.2rem; margin-top: -5px;"
-                                        onclick="manejadorFavorito(this, ${n.id})">
-                                    ${esFavorito(n.id) ? '★' : '☆'}
-                                </button>
-                            </div>
-                        </div>
+                        <p class="card-desc" style="font-size: 0.9rem;">${n.resumen}</p>
                     </div>
                 </article>
             `).join('');
