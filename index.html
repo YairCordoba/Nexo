@@ -4,115 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nexo Noticias - Quietly Thinking</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="src/css/styles.css">
     <link rel="stylesheet" href="src/css/components.css">
     <link rel="stylesheet" href="src/css/responsive.css">
 </head>
 <body>
     <header>
-        <div class="container navbar">
-            <a href="index.html" class="logo">
-                <span class="logo-main">POLITÉCNICO</span>
-            </a>
-            
-            <nav>
+        <div class="navbar">
+            <a href="index.html" class="logo"><span class="logo-main">POLITÉCNICO</span></a>
+            <nav aria-label="Navegación principal">
                 <ul class="nav-links" id="navLinks">
                     <li><a href="index.html" class="active">Inicio</a></li>
                     <li><a href="src/pages/noticias.html">Noticias</a></li>
                     <li><a href="src/pages/noticias.html?categoria=todas">Categorías</a></li>
                     <li><a href="src/pages/contacto.html">Contacto</a></li>
-                    <li><a href="src/pages/admin.html">Admin</a></li>
                 </ul>
             </nav>
-            
             <div class="nav-actions">
-                <button class="nav-toggle" id="navToggle">☰</button>
-                <a href="src/pages/noticias.html" class="btn btn-primary" style="margin-left: 1rem;">Explorar</a>
+                <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false"></button>
+                <a href="src/pages/noticias.html" class="btn btn-primary">Explorar</a>
             </div>
         </div>
     </header>
 
     <main>
-        <section class="hero">
-            <div class="container hero-grid">
-                <div>
-                    <span style="color: var(--color-accent); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 0.5rem;">PORTADA / ACTUALIDAD</span>
-                    <h1 style="margin-bottom: 1rem;">Noticias del campus</h1>
-                    <p class="hero-subtitle" style="margin-bottom: 2rem;">Una portada editorial para descubrir lo que ocurre en el Politécnico.</p>
-                    <a href="src/pages/noticias.html" class="btn btn-primary">Ver noticias</a>
-                </div>
-                <div id="heroFeaturedNews" style="width: 100%; height: 100%;">
-                    <!-- JS inyectará la imagen destacada aquí -->
-                    <div style="background-color: var(--color-border); width: 100%; height: 350px; border-radius: var(--border-radius); display: flex; align-items: center; justify-content: center; color: var(--color-text-light);">
-                        IMAGEN / Destacada
-                    </div>
-                </div>
+        <section class="home-hero" aria-labelledby="homeTitle">
+            <div class="home-hero-copy">
+                <span class="kicker">Portada / Actualidad</span>
+                <h1 id="homeTitle">Noticias del campus</h1>
+                <p class="page-subtitle"><span class="copy-desktop">Una portada editorial para descubrir lo que ocurre en el Politécnico.</span><span class="copy-mobile">Portada optimizada para lectura y acción en una sola columna.</span></p>
+                <a href="src/pages/noticias.html" class="btn btn-primary">Ver noticias</a>
+            </div>
+            <div id="heroFeaturedNews" class="hero-featured-slot" aria-live="polite">
+                <div class="loading-state">Cargando noticia destacada…</div>
             </div>
         </section>
 
-        <section class="container">
-            <div class="section-divider">
-                <h2>Últimas noticias</h2>
-                <div class="line"></div>
+        <section aria-labelledby="latestTitle">
+            <div class="section-heading"><h2 id="latestTitle">Últimas noticias</h2></div>
+            <div id="contenedorNoticiasDestacadas" class="news-grid">
+                <p class="loading-state">Cargando noticias…</p>
             </div>
-            
-            <!-- Grilla de Últimas noticias (3 columnas) -->
-            <div id="contenedorNoticiasDestacadas">
-                <p style="color: var(--color-text-light);">Cargando noticias...</p>
-            </div>
-            
-            <div class="section-divider" style="margin-top: 4rem;">
-                <h2>Explora por categoría</h2>
-                <div class="line"></div>
-            </div>
-            
+        </section>
+
+        <section class="home-categories" aria-labelledby="categoriesTitle">
+            <div class="section-heading"><h2 id="categoriesTitle">Explora por categoría</h2></div>
             <div class="categories-list">
                 <a href="src/pages/noticias.html?categoria=Educación" class="category-tag">Educación</a>
-                <a href="src/pages/noticias.html?categoria=Tecnología" class="category-tag">Tecnología</a>
-                <a href="src/pages/noticias.html?categoria=Turismo" class="category-tag">Turismo</a>
-                <a href="src/pages/noticias.html?categoria=Comercio" class="category-tag">Comercio</a>
+                <a href="src/pages/noticias.html?categoria=Tecnología" class="category-tag" data-categoria="Tecnología">Tecnología</a>
+                <a href="src/pages/noticias.html?categoria=Turismo" class="category-tag" data-categoria="Turismo">Turismo</a>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-col">
-                    <a href="index.html" class="logo" style="margin-bottom: 1.5rem;">
-                        <span class="logo-main" style="color: var(--color-primary);">POLITÉCNICO</span>
-                    </a>
-                    <p style="max-width: 300px;">Un espacio digital para descubrir noticias y experiencias del campus universitario.</p>
-                </div>
-                <div class="footer-col">
-                    <h3>Explorar</h3>
-                    <ul>
-                        <li><a href="index.html">Inicio</a></li>
-                        <li><a href="src/pages/noticias.html">Noticias</a></li>
-                        <li><a href="src/pages/favoritos.html">Tus historias guardadas</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Legal</h3>
-                    <ul>
-                        <li><a href="src/pages/contacto.html">Hablemos</a></li>
-                        <li><a href="src/pages/admin.html">Panel de administración</a></li>
-                    </ul>
-                </div>
+        <div class="footer-content">
+            <div class="footer-col">
+                <a href="index.html" class="logo" style="color: var(--color-primary);"><span class="logo-main">POLITÉCNICO</span></a>
+                <p>Un espacio digital para descubrir noticias y experiencias del campus universitario.</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Politécnico. Proyecto Académico.</p>
-                <p>Desarrollado para Frontend Semana 5</p>
+            <div class="footer-col">
+                <h3>Explorar</h3>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="src/pages/noticias.html">Noticias</a></li>
+                    <li><a href="src/pages/favoritos.html">Tus historias guardadas</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Gestión</h3>
+                <ul>
+                    <li><a href="src/pages/contacto.html">Hablemos</a></li>
+                    <li><a href="src/pages/admin.html">Panel de administración</a></li>
+                </ul>
             </div>
         </div>
+        <div class="footer-bottom"><span>© 2026 Politécnico.</span><span>Frontend Semana 5</span></div>
     </footer>
 
-    <!-- Scripts -->
     <script src="src/js/utils.js"></script>
     <script src="src/js/favoritos.js"></script>
     <script src="src/js/app.js"></script>

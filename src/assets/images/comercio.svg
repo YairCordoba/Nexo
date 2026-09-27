@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Comercio</title>
+  <desc id="desc">Ilustración abstracta de intercambio y comercio.</desc>
+  <defs><linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#f1e4ff"/><stop offset="1" stop-color="#c4a5e7"/></linearGradient></defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <path d="M165 565h870v70H165zM250 485h700v80H250zM350 365h500v120H350z" fill="#4c2a78" opacity=".9"/>
+  <path d="M250 365 430 190h340l180 175z" fill="#fffdf7" opacity=".9"/>
+  <circle cx="600" cy="405" r="46" fill="#c2410c"/>
+  <text x="80" y="120" fill="#4c2a78" font-family="Arial,sans-serif" font-size="42" font-weight="700">COMERCIO</text>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Tecnología</title>
+  <desc id="desc">Ilustración abstracta de una red tecnológica.</desc>
+  <defs><linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#dce8ff"/><stop offset="1" stop-color="#91aee6"/></linearGradient></defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <g stroke="#264f9f" stroke-width="10" opacity=".8"><path d="M160 600 390 370 650 520 980 190"/><path d="M390 370 520 170 980 190"/><path d="M650 520 820 690"/></g>
+  <g fill="#fffdf7" stroke="#264f9f" stroke-width="8"><circle cx="160" cy="600" r="28"/><circle cx="390" cy="370" r="28"/><circle cx="650" cy="520" r="28"/><circle cx="980" cy="190" r="28"/><circle cx="520" cy="170" r="28"/><circle cx="820" cy="690" r="28"/></g>
+  <text x="80" y="120" fill="#203d7a" font-family="Arial,sans-serif" font-size="42" font-weight="700">TECNOLOGÍA</text>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Turismo</title>
+  <desc id="desc">Ilustración abstracta de montañas y territorio.</desc>
+  <defs><linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#fff1d6"/><stop offset="1" stop-color="#f1b880"/></linearGradient></defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <circle cx="930" cy="190" r="120" fill="#c2410c" opacity=".8"/>
+  <path d="M0 650 290 300l150 190 170-250 390 410z" fill="#1d4e38" opacity=".9"/>
+  <path d="m290 300 80 100 70 90-150-95zM610 240l80 155 90 95-170-110z" fill="#fffdf7" opacity=".9"/>
+  <text x="80" y="120" fill="#8e3215" font-family="Arial,sans-serif" font-size="42" font-weight="700">TURISMO</text>
+</svg>

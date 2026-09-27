@@ -4,103 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administración - Nexo Noticias</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/components.css">
     <link rel="stylesheet" href="../css/responsive.css">
 </head>
 <body>
     <header>
-        <div class="container navbar">
-            <a href="../../index.html" class="logo">
-                <span class="logo-main">NEXO</span>
-                <span class="logo-sub">Panel de Administración.</span>
-            </a>
-            
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="../../index.html" style="color: var(--color-primary); font-weight: bold;">&larr; Volver al Sitio</a></li>
+        <div class="navbar">
+            <a href="../../index.html" class="logo"><span class="logo-main">POLITÉCNICO</span></a>
+            <nav aria-label="Navegación principal">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="../../index.html">Inicio</a></li>
+                    <li><a href="noticias.html">Noticias</a></li>
+                    <li><a href="noticias.html?categoria=todas">Categorías</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
                 </ul>
             </nav>
+            <div class="nav-actions">
+                <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false"></button>
+                <a href="noticias.html" class="btn btn-primary">Explorar</a>
+            </div>
         </div>
     </header>
 
-    <main>
-        <div class="container" style="padding-top: 3rem;">
-            <div style="background-color: #f9f9f9; padding: 1.5rem; border-left: 4px solid var(--color-primary); margin-bottom: 3rem;">
-                <p style="font-size: 0.95rem;"><strong>Nota:</strong> Este es un módulo administrativo demostrativo. Las modificaciones se persistirán en el <code>localStorage</code>.</p>
-            </div>
+    <main class="page-admin">
+        <section class="page-intro" aria-labelledby="adminTitle">
+            <span class="kicker">Gestión / Administración</span>
+            <h1 id="adminTitle">Panel de noticias</h1>
+            <p class="page-subtitle">Gestiona publicaciones y estados editoriales desde un único lugar.</p>
+        </section>
 
-            <div class="main-layout" style="grid-template-columns: 1fr 2fr;">
-                
-                <!-- Formulario de creación/edición -->
-                <div style="background-color: var(--color-white); padding: 2rem; border: 1px solid var(--color-border); align-self: start;">
-                    <h2 class="section-title" id="formAdminTitle" style="font-size: 1.5rem; font-family: var(--font-heading); margin-bottom: 2rem; border: none; padding: 0;">Crear Noticia</h2>
-                    
-                    <form id="formAdmin">
-                        <!-- Campo oculto para el ID en modo edición -->
-                        <input type="hidden" id="noticiaId" value="">
-                        
-                        <div class="form-group">
-                            <label for="titulo" class="form-label">Título</label>
-                            <input type="text" id="titulo" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="categoria" class="form-label">Categoría</label>
-                            <select id="categoria" class="form-control" required>
-                                <option value="Educación">Educación</option>
-                                <option value="Tecnología">Tecnología</option>
-                                <option value="Turismo">Turismo</option>
-                                <option value="Comercio">Comercio</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="imagen" class="form-label">URL de Imagen (Opcional)</label>
-                            <input type="text" id="imagen" class="form-control" placeholder="Ej: assets/images/foto.jpg">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="resumen" class="form-label">Resumen</label>
-                            <textarea id="resumen" class="form-control" style="min-height: 80px;" required></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="contenido" class="form-label">Contenido Completo</label>
-                            <textarea id="contenido" class="form-control" required></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="autor" class="form-label">Autor</label>
-                            <input type="text" id="autor" class="form-control" required>
-                        </div>
-                        
-                        <div style="display: flex; gap: 1rem;">
-                            <button type="submit" class="btn btn-primary" id="btnSubmitAdmin" style="flex: 1;">Guardar</button>
-                            <button type="button" class="btn btn-outline" id="btnCancelarEdicion" style="display: none;" onclick="cancelarEdicion()">Cancelar</button>
-                        </div>
-                    </form>
+        <section class="admin-stats" aria-label="Resumen editorial">
+            <div class="admin-stat"><strong id="statPublished">0</strong><span>Publicadas</span></div>
+            <div class="admin-stat"><strong id="statDrafts">0</strong><span>Borradores</span></div>
+            <div class="admin-stat"><strong id="statReview">0</strong><span>Pendientes</span></div>
+        </section>
+
+        <section aria-labelledby="publicationsTitle">
+            <div class="section-heading"><h2 id="publicationsTitle">Últimas publicaciones</h2></div>
+            <div id="listaAdmin" class="admin-list" aria-live="polite"></div>
+        </section>
+
+        <button type="button" class="btn btn-primary" id="btnNuevaNoticia" style="margin-top: 36px; width: 150px;">Nueva noticia</button>
+
+        <section id="formAdminPanel" class="admin-form-panel" hidden aria-labelledby="formAdminTitle">
+            <h2 id="formAdminTitle" style="font-size: 20px; margin-bottom: 18px;">Crear noticia</h2>
+            <form id="formAdmin">
+                <input type="hidden" id="noticiaId" value="">
+                <div class="admin-form-grid">
+                    <div class="form-group"><label for="titulo" class="form-label">Título</label><input type="text" id="titulo" class="form-control" required></div>
+                    <div class="form-group"><label for="categoria" class="form-label">Categoría</label><select id="categoria" class="form-control" required><option>Educación</option><option>Tecnología</option><option>Turismo</option><option>Comercio</option></select></div>
+                    <div class="form-group"><label for="autor" class="form-label">Autor</label><input type="text" id="autor" class="form-control" required></div>
+                    <div class="form-group"><label for="imagen" class="form-label">URL de imagen (opcional)</label><input type="text" id="imagen" class="form-control"></div>
+                    <div class="form-group form-group--wide"><label for="resumen" class="form-label">Resumen</label><textarea id="resumen" class="form-control" required></textarea></div>
+                    <div class="form-group form-group--wide"><label for="contenido" class="form-label">Contenido completo</label><textarea id="contenido" class="form-control" required></textarea></div>
                 </div>
-                
-                <!-- Listado -->
-                <div>
-                    <h2 class="section-title" style="font-size: 1.5rem; font-family: var(--font-heading); margin-bottom: 2rem; border: none; padding: 0;">Noticias Existentes</h2>
-                    
-                    <div id="listaAdmin" style="display: flex; flex-direction: column; gap: 1rem;">
-                        <!-- JS inyectará lista aquí -->
-                        <div style="text-align: center; padding: 2rem; color: var(--color-text-light);">Cargando inventario...</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                <div style="display: flex; gap: 8px; margin-top: 14px;"><button type="submit" class="btn btn-primary" id="btnSubmitAdmin">Guardar</button><button type="button" class="btn btn-outline" id="btnCancelarEdicion">Cancelar</button></div>
+            </form>
+        </section>
     </main>
 
     <script src="../js/utils.js"></script>
+    <script src="../js/favoritos.js"></script>
     <script src="../js/admin.js"></script>
     <script src="../js/app.js"></script>
 </body>

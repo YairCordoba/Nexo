@@ -4,90 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto - Nexo Noticias</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/components.css">
     <link rel="stylesheet" href="../css/responsive.css">
 </head>
-<body>
+<body class="page-contact-shell">
     <header>
-        <div class="container navbar">
-            <a href="../../index.html" class="logo">
-                <span class="logo-main">NEXO</span>
-                <span class="logo-sub">Noticias.</span>
-            </a>
-            
-            <nav>
+        <div class="navbar">
+            <a href="../../index.html" class="logo"><span class="logo-main">POLITÉCNICO</span></a>
+            <nav aria-label="Navegación principal">
                 <ul class="nav-links" id="navLinks">
                     <li><a href="../../index.html">Inicio</a></li>
                     <li><a href="noticias.html">Noticias</a></li>
-                    <li><a href="favoritos.html">Favoritos</a></li>
+                    <li><a href="noticias.html?categoria=todas">Categorías</a></li>
                     <li><a href="contacto.html" class="active">Contacto</a></li>
                 </ul>
             </nav>
-            
             <div class="nav-actions">
-                <button class="nav-toggle" id="navToggle">☰</button>
-                <span style="font-size: 1.2rem; cursor: pointer;">🔍</span>
-                <span style="font-size: 1.2rem; cursor: pointer;">🌙</span>
-                <a href="contacto.html" class="btn btn-primary" style="margin-left: 1rem;">Contact →</a>
+                <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false"></button>
+                <a href="noticias.html" class="btn btn-primary">Explorar</a>
             </div>
         </div>
     </header>
 
-    <main>
-        <div class="container" style="max-width: 800px; padding-top: 3rem;">
-            <div style="border-bottom: 2px solid var(--color-primary); padding-bottom: 1rem; margin-bottom: 3rem;">
-                <h1 style="font-size: 3rem; margin: 0; line-height: 1;">Contacto</h1>
-                <p style="margin-top: 1rem; color: var(--color-text-light);">¿Tienes alguna duda, sugerencia o noticia para compartir? Escríbenos.</p>
-            </div>
-            
-            <div id="mensajeExito" style="display: none; padding: 2rem; background-color: #f1f8f5; border-left: 4px solid #10b981; margin-bottom: 2rem;">
-                <strong style="color: #047857; font-size: 1.1rem; display: block; margin-bottom: 0.5rem;">¡Mensaje enviado correctamente!</strong> 
-                <span style="color: #065f46;">Gracias por contactar a Nexo Noticias. Nos pondremos en contacto contigo pronto.</span>
-            </div>
+    <main class="page-contact">
+        <section class="page-intro" aria-labelledby="contactTitle">
+            <span class="kicker">Conexión / Contacto</span>
+            <h1 id="contactTitle">Hablemos</h1>
+            <p class="page-subtitle"><span class="copy-desktop">Un canal directo para preguntas, propuestas y alianzas.</span><span class="copy-mobile">Formulario de contacto en una sola columna.</span></p>
+        </section>
 
-            <form id="formContacto" style="background-color: var(--color-white); padding: 3rem; border: 1px solid var(--color-border);">
+        <div id="mensajeExito" class="feedback" style="display: none; margin-bottom: 20px;" role="status">
+            <div><strong>¡Mensaje enviado correctamente!</strong><p>Gracias por escribirnos.</p></div>
+        </div>
+
+        <div class="contact-layout">
+            <section class="contact-info" aria-labelledby="writeTitle">
+                <h2 id="writeTitle">Escríbenos</h2>
+                <p class="contact-details"><span>hola@nexo.edu.co</span><span>Lun–Vie</span><span>8:00–17:00</span><span class="contact-location">Pereira, Colombia</span></p>
+            </section>
+
+            <form id="formContacto" class="contact-form">
                 <div class="form-group">
-                    <label for="nombre" class="form-label">Nombre Completo *</label>
-                    <input type="text" id="nombre" class="form-control" required minlength="3">
-                    <span class="form-error" id="errorNombre">El nombre es obligatorio y debe tener al menos 3 caracteres.</span>
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" id="nombre" class="form-control" placeholder="Camilo Escobar" required minlength="3">
+                    <span class="form-error" id="errorNombre">El nombre debe tener al menos 3 caracteres.</span>
                 </div>
-                
                 <div class="form-group">
-                    <label for="correo" class="form-label">Correo Electrónico *</label>
-                    <input type="email" id="correo" class="form-control" required>
-                    <span class="form-error" id="errorCorreo">Por favor ingresa un correo electrónico válido.</span>
+                    <label for="correo" class="form-label">Correo</label>
+                    <input type="email" id="correo" class="form-control" placeholder="camilo@correo.co" required>
+                    <span class="form-error" id="errorCorreo">Ingresa un correo válido.</span>
                 </div>
-                
                 <div class="form-group">
-                    <label for="asunto" class="form-label">Asunto *</label>
-                    <input type="text" id="asunto" class="form-control" required minlength="5">
-                    <span class="form-error" id="errorAsunto">El asunto es obligatorio y debe tener al menos 5 caracteres.</span>
+                    <label for="mensaje" class="form-label">Mensaje</label>
+                    <textarea id="mensaje" class="form-control" placeholder="Cuéntanos en qué podemos ayudarte." required minlength="10"></textarea>
+                    <span class="form-error" id="errorMensaje">El mensaje debe tener al menos 10 caracteres.</span>
                 </div>
-                
-                <div class="form-group">
-                    <label for="mensaje" class="form-label">Mensaje *</label>
-                    <textarea id="mensaje" class="form-control" required minlength="10"></textarea>
-                    <span class="form-error" id="errorMensaje">El mensaje es obligatorio y debe tener al menos 10 caracteres.</span>
-                </div>
-                
-                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1rem;">Enviar Mensaje →</button>
+                <button type="submit" class="btn btn-primary">Enviar mensaje</button>
             </form>
         </div>
     </main>
 
     <footer>
-        <div class="container">
-            <div class="footer-bottom" style="border-top: none;">
-                <p>&copy; 2026 Nexo Noticias. Proyecto Académico.</p>
-                <p>Designed for Quietly Thinking</p>
-            </div>
-        </div>
+        <div class="footer-content"><div class="footer-col"><a href="../../index.html" class="logo" style="color: var(--color-primary);"><span class="logo-main">POLITÉCNICO</span></a><p>Un espacio digital para descubrir noticias y experiencias del campus.</p></div><div class="footer-col"><h3>Explorar</h3><ul><li><a href="../../index.html">Inicio</a></li><li><a href="noticias.html">Noticias</a></li><li><a href="favoritos.html">Favoritos</a></li></ul></div><div class="footer-col"><h3>Gestión</h3><ul><li><a href="contacto.html">Hablemos</a></li><li><a href="admin.html">Administración</a></li></ul></div></div>
+        <div class="footer-bottom"><span>© 2026 Politécnico.</span><span>Frontend Semana 5</span></div>
     </footer>
 
     <script src="../js/utils.js"></script>
