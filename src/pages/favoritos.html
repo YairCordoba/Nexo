@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="../css/components.css">
     <link rel="stylesheet" href="../css/responsive.css">
 </head>
+
 <body>
     <header>
         <div class="navbar">
@@ -21,7 +23,8 @@
                 </ul>
             </nav>
             <div class="nav-actions">
-                <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false"></button>
+                <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú"
+                    aria-expanded="false"></button>
                 <a href="noticias.html" class="btn btn-primary">Explorar</a>
             </div>
         </div>
@@ -34,10 +37,15 @@
             <p class="page-subtitle">Un espacio personal para volver a lo que quieres leer con calma.</p>
         </section>
         <section aria-labelledby="savedTitle">
-            <div class="section-heading"><h2 id="savedTitle">Guardadas recientemente</h2></div>
+            <div class="section-heading">
+                <h2 id="savedTitle">Guardadas recientemente</h2>
+            </div>
             <div class="news-grid" id="contenedorFavoritos" aria-live="polite"></div>
             <div id="mensajeVacioFavs" class="feedback" style="display: none; margin-top: 20px;">
-                <div><p>No tienes noticias guardadas todavía.</p><a href="noticias.html" class="btn btn-primary" style="margin-top: 16px;">Explorar noticias</a></div>
+                <div>
+                    <p>No tienes noticias guardadas todavía.</p><a href="noticias.html" class="btn btn-primary"
+                        style="margin-top: 16px;">Explorar noticias</a>
+                </div>
             </div>
         </section>
         <p class="favorites-help">Puedes guardar historias desde cualquier tarjeta de noticias.</p>
@@ -45,7 +53,27 @@
     </main>
 
     <footer>
-        <div class="footer-content"><div class="footer-col"><a href="../../index.html" class="logo" style="color: var(--color-primary);"><span class="logo-main">POLITÉCNICO</span></a><p>Un espacio digital para descubrir noticias y experiencias del campus.</p></div><div class="footer-col"><h3>Explorar</h3><ul><li><a href="../../index.html">Inicio</a></li><li><a href="noticias.html">Noticias</a></li><li><a href="favoritos.html">Favoritos</a></li></ul></div><div class="footer-col"><h3>Gestión</h3><ul><li><a href="contacto.html">Hablemos</a></li><li><a href="admin.html">Administración</a></li></ul></div></div>
+        <div class="footer-content">
+            <div class="footer-col"><a href="../../index.html" class="logo" style="color: var(--color-primary);"><span
+                        class="logo-main">POLITÉCNICO</span></a>
+                <p>Un espacio digital para descubrir noticias y experiencias del campus.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Explorar</h3>
+                <ul>
+                    <li><a href="../../index.html">Inicio</a></li>
+                    <li><a href="noticias.html">Noticias</a></li>
+                    <li><a href="favoritos.html">Favoritos</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Gestión</h3>
+                <ul>
+                    <li><a href="contacto.html">Hablemos</a></li>
+                    <li><a href="admin.html">Administración</a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom"><span>© 2026 Politécnico.</span><span>Frontend Semana 5</span></div>
     </footer>
 
@@ -53,4 +81,5 @@
     <script src="../js/favoritos.js"></script>
     <script src="../js/app.js"></script>
 </body>
+
 </html>

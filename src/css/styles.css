@@ -89,18 +89,16 @@
 
 html {
     min-height: 100%;
-    background: #f0ece4;
+    background: var(--color-secondary);
 }
 
 body {
     width: 100%;
-    max-width: 700px;
-    min-height: 840px;
+    max-width: 1200px;
+    min-height: 100vh;
     margin: 0 auto;
     overflow-x: hidden;
     background: var(--color-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-shell);
     color: var(--color-text);
     font-family: var(--font-primary);
     font-size: 14px;
@@ -236,9 +234,9 @@ p {
 
 .home-hero {
     display: grid;
-    grid-template-columns: 360px 238px;
-    gap: 38px;
-    align-items: start;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 48px;
+    align-items: center;
     margin: 0 0 58px;
 }
 
@@ -248,15 +246,18 @@ p {
 
 .home-hero h1 {
     margin-bottom: 23px;
+    font-size: 42px;
 }
 
 .home-hero .page-subtitle {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    font-size: 16px;
+    line-height: 1.5;
 }
 
 .hero-featured-slot {
-    width: 238px;
-    height: 180px;
+    width: 100%;
+    aspect-ratio: 16/9;
     overflow: hidden;
     border-radius: var(--radius-card);
     background: var(--color-mint);
@@ -290,8 +291,8 @@ p {
 
 .news-grid {
     display: grid;
-    grid-template-columns: repeat(3, 200px);
-    gap: 18px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
 }
 
 .home-categories {

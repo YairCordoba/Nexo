@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="src/css/components.css">
     <link rel="stylesheet" href="src/css/responsive.css">
 </head>
+
 <body>
     <header>
         <div class="navbar">
@@ -21,7 +23,8 @@
                 </ul>
             </nav>
             <div class="nav-actions">
-                <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false"></button>
+                <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú"
+                    aria-expanded="false"></button>
                 <a href="src/pages/noticias.html" class="btn btn-primary">Explorar</a>
             </div>
         </div>
@@ -32,7 +35,9 @@
             <div class="home-hero-copy">
                 <span class="kicker">Portada / Actualidad</span>
                 <h1 id="homeTitle">Noticias del campus</h1>
-                <p class="page-subtitle"><span class="copy-desktop">Una portada editorial para descubrir lo que ocurre en el Politécnico.</span><span class="copy-mobile">Portada optimizada para lectura y acción en una sola columna.</span></p>
+                <p class="page-subtitle"><span class="copy-desktop">Una portada editorial para descubrir lo que ocurre
+                        en el Politécnico.</span><span class="copy-mobile">Portada optimizada para lectura y acción en
+                        una sola columna.</span></p>
                 <a href="src/pages/noticias.html" class="btn btn-primary">Ver noticias</a>
             </div>
             <div id="heroFeaturedNews" class="hero-featured-slot" aria-live="polite">
@@ -41,18 +46,11 @@
         </section>
 
         <section aria-labelledby="latestTitle">
-            <div class="section-heading"><h2 id="latestTitle">Últimas noticias</h2></div>
+            <div class="section-heading">
+                <h2 id="latestTitle">Últimas noticias</h2>
+            </div>
             <div id="contenedorNoticiasDestacadas" class="news-grid">
                 <p class="loading-state">Cargando noticias…</p>
-            </div>
-        </section>
-
-        <section class="home-categories" aria-labelledby="categoriesTitle">
-            <div class="section-heading"><h2 id="categoriesTitle">Explora por categoría</h2></div>
-            <div class="categories-list">
-                <a href="src/pages/noticias.html?categoria=Educación" class="category-tag">Educación</a>
-                <a href="src/pages/noticias.html?categoria=Tecnología" class="category-tag" data-categoria="Tecnología">Tecnología</a>
-                <a href="src/pages/noticias.html?categoria=Turismo" class="category-tag" data-categoria="Turismo">Turismo</a>
             </div>
         </section>
     </main>
@@ -60,7 +58,8 @@
     <footer>
         <div class="footer-content">
             <div class="footer-col">
-                <a href="index.html" class="logo" style="color: var(--color-primary);"><span class="logo-main">POLITÉCNICO</span></a>
+                <a href="index.html" class="logo" style="color: var(--color-primary);"><span
+                        class="logo-main">POLITÉCNICO</span></a>
                 <p>Un espacio digital para descubrir noticias y experiencias del campus universitario.</p>
             </div>
             <div class="footer-col">
@@ -86,4 +85,5 @@
     <script src="src/js/favoritos.js"></script>
     <script src="src/js/app.js"></script>
 </body>
+
 </html>
