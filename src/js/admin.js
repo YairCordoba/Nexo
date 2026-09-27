@@ -1,125 +1,119 @@
-/**
- * admin.js
- * Lógica del CRUD Completo para administración usando localStorage.
- */
-
 document.addEventListener('DOMContentLoaded', () => {
     const formAdmin = document.getElementById('formAdmin');
-    
-    if (formAdmin) {
-        renderizarListaAdmin();
-        
-        formAdmin.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            await guardarNoticia();
-        });
-    }
+    const panel = document.getElementById('formAdminPanel');
+    const nueva = document.getElementById('btnNuevaNoticia');
+    const cancelar = document.getElementById('btnCancelarEdicion');
+
+    if (!formAdmin) return;
+    renderizarListaAdmin();
+
+    formAdmin.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        await guardarNoticia();
+    });
+
+    nueva?.addEventListener('click', () => {
+        cancelarEdicion(false);
+        panel.hidden = false;
+        document.getElementById('titulo')?.focus();
+    });
+
+    cancelar?.addEventListener('click', () => cancelarEdicion(true));
 });
+
+function obtenerEstado(noticia, index) {
+    if (noticia.destacada) return { label: 'Publicada', className: 'status-published' };
+    if (index % 3 === 1) return { label: 'Borrador', className: 'status-draft' };
+    return { label: 'Revisión', className: 'status-review' };
+}
 
 async function renderizarListaAdmin() {
     const contenedor = document.getElementById('listaAdmin');
     if (!contenedor) return;
-    
+
     try {
-        const noticias = await obtenerNoticias();
-        
-        if (noticias.length === 0) {
-            contenedor.innerHTML = '<div style="text-align: center; color: var(--color-text-light); padding: 3rem; background: #fafafa; border: 1px dashed var(--color-border);">No hay noticias creadas. Utiliza el formulario para crear una.</div>';
+        const noticias = [...await obtenerNoticias()].sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+        const estados = noticias.map(obtenerEstado);
+        const publicados = estados.filter((estado) => estado.label === 'Publicada').length;
+        const borradores = estados.filter((estado) => estado.label === 'Borrador').length;
+        const revision = estados.filter((estado) => estado.label === 'Revisión').length;
+        document.getElementById('statPublished').textContent = String(publicados).padStart(2, '0');
+        document.getElementById('statDrafts').textContent = String(borradores).padStart(2, '0');
+        document.getElementById('statReview').textContent = String(revision).padStart(2, '0');
+
+        if (!noticias.length) {
+            contenedor.innerHTML = '<div class="feedback">No hay publicaciones todavía.</div>';
             return;
         }
-        
-        // Ordenamos recientes primero
-        noticias.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
-        
-        contenedor.innerHTML = noticias.map(n => `
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1.5rem; border: 1px solid var(--color-border); background: var(--color-white); transition: var(--transition);">
-                <div>
-                    <h4 style="margin-bottom: 0.5rem; font-family: var(--font-heading); font-size: 1.1rem;">${n.titulo}</h4>
-                    <span style="font-size: 0.85rem; color: var(--color-text-light);">${n.categoria} • ${n.autor} • ${formatearFecha(n.fecha)}</span>
+
+        contenedor.innerHTML = noticias.slice(0, 3).map((noticia, index) => {
+            const estado = estados[index];
+            return `
+                <div class="admin-row">
+                    <span class="admin-row__title">${noticia.titulo}</span>
+                    <span class="status-tag ${estado.className}">${estado.label}</span>
+                    <span class="admin-row__date">${formatearMeta(noticia.fecha)}</span>
+                    <span class="admin-row__actions">
+                        <button type="button" class="btn btn-outline" onclick="prepararEdicion(${noticia.id})">Editar</button>
+                        <button type="button" class="btn btn-danger" onclick="eliminarNoticia(${noticia.id})">Eliminar</button>
+                    </span>
                 </div>
-                <div style="display: flex; gap: 0.5rem;">
-                    <button onclick="prepararEdicion(${n.id})" class="btn btn-outline" style="padding: 0.4rem 1rem; font-size: 0.85rem;">Editar</button>
-                    <button onclick="eliminarNoticia(${n.id})" class="btn btn-danger" style="padding: 0.4rem 1rem; font-size: 0.85rem;">Eliminar</button>
-                </div>
-            </div>
-        `).join('');
-        
+            `;
+        }).join('');
     } catch (error) {
-        contenedor.innerHTML = '<div style="color: #d93025; padding: 2rem;">Error al cargar el listado de noticias.</div>';
+        contenedor.innerHTML = '<div class="feedback feedback-error">Error al cargar el listado.</div>';
     }
 }
 
 async function guardarNoticia() {
-    const idInput = document.getElementById('noticiaId').value;
-    
-    if (idInput) {
-        // Modo Edición
-        await actualizarNoticia(parseInt(idInput));
-    } else {
-        // Modo Creación
-        await crearNoticia();
-    }
+    const id = document.getElementById('noticiaId').value;
+    if (id) await actualizarNoticia(parseInt(id, 10));
+    else await crearNoticia();
 }
 
 async function crearNoticia() {
     const noticias = await obtenerNoticias();
-    const maxId = noticias.length > 0 ? Math.max(...noticias.map(n => n.id)) : 0;
-    const nuevoId = maxId + 1;
-    
-    const nuevaNoticia = {
+    const nuevoId = noticias.length ? Math.max(...noticias.map((noticia) => noticia.id)) + 1 : 1;
+    noticias.push({
         id: nuevoId,
-        titulo: document.getElementById('titulo').value,
+        titulo: document.getElementById('titulo').value.trim(),
         categoria: document.getElementById('categoria').value,
-        imagen: document.getElementById('imagen').value || '',
-        resumen: document.getElementById('resumen').value,
-        contenido: document.getElementById('contenido').value,
-        autor: document.getElementById('autor').value,
+        imagen: document.getElementById('imagen').value.trim(),
+        resumen: document.getElementById('resumen').value.trim(),
+        contenido: document.getElementById('contenido').value.trim(),
+        autor: document.getElementById('autor').value.trim(),
         fecha: new Date().toISOString().split('T')[0],
         destacada: false
-    };
-    
-    noticias.push(nuevaNoticia);
+    });
     guardarNoticias(noticias);
-    
     finalizarOperacion('Noticia creada correctamente.');
 }
 
 async function actualizarNoticia(id) {
-    let noticias = await obtenerNoticias();
-    const index = noticias.findIndex(n => n.id === id);
-    
-    if (index !== -1) {
-        // Preservar la fecha original y el estado de destacada
-        noticias[index] = {
-            ...noticias[index],
-            titulo: document.getElementById('titulo').value,
-            categoria: document.getElementById('categoria').value,
-            imagen: document.getElementById('imagen').value || '',
-            resumen: document.getElementById('resumen').value,
-            contenido: document.getElementById('contenido').value,
-            autor: document.getElementById('autor').value
-        };
-        
-        guardarNoticias(noticias);
-        
-        // Sincronizar en favoritos si es necesario
-        sincronizarFavoritosTrasEdicion(noticias[index]);
-        
-        finalizarOperacion('Noticia actualizada exitosamente.');
-        cancelarEdicion();
-    }
+    const noticias = await obtenerNoticias();
+    const index = noticias.findIndex((noticia) => noticia.id === id);
+    if (index === -1) return;
+    noticias[index] = {
+        ...noticias[index],
+        titulo: document.getElementById('titulo').value.trim(),
+        categoria: document.getElementById('categoria').value,
+        imagen: document.getElementById('imagen').value.trim(),
+        resumen: document.getElementById('resumen').value.trim(),
+        contenido: document.getElementById('contenido').value.trim(),
+        autor: document.getElementById('autor').value.trim()
+    };
+    guardarNoticias(noticias);
+    sincronizarFavoritosTrasEdicion(noticias[index]);
+    finalizarOperacion('Noticia actualizada correctamente.');
 }
 
 async function prepararEdicion(id) {
     const noticia = await obtenerNoticiaPorId(id);
-    if (!noticia) return;
-    
-    // Cambiar UI
-    document.getElementById('formAdminTitle').innerText = 'Editar Noticia';
-    document.getElementById('btnSubmitAdmin').innerText = 'Actualizar';
-    document.getElementById('btnCancelarEdicion').style.display = 'block';
-    
-    // Llenar datos
+    const panel = document.getElementById('formAdminPanel');
+    if (!noticia || !panel) return;
+    panel.hidden = false;
+    document.getElementById('formAdminTitle').textContent = 'Editar noticia';
+    document.getElementById('btnSubmitAdmin').textContent = 'Actualizar';
     document.getElementById('noticiaId').value = noticia.id;
     document.getElementById('titulo').value = noticia.titulo;
     document.getElementById('categoria').value = noticia.categoria;
@@ -127,57 +121,37 @@ async function prepararEdicion(id) {
     document.getElementById('resumen').value = noticia.resumen;
     document.getElementById('contenido').value = noticia.contenido;
     document.getElementById('autor').value = noticia.autor;
-    
-    // Scroll arriba
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function cancelarEdicion() {
-    document.getElementById('formAdmin').reset();
+function cancelarEdicion(ocultar = true) {
+    document.getElementById('formAdmin')?.reset();
     document.getElementById('noticiaId').value = '';
-    
-    document.getElementById('formAdminTitle').innerText = 'Crear Noticia';
-    document.getElementById('btnSubmitAdmin').innerText = 'Guardar';
-    document.getElementById('btnCancelarEdicion').style.display = 'none';
+    document.getElementById('formAdminTitle').textContent = 'Crear noticia';
+    document.getElementById('btnSubmitAdmin').textContent = 'Guardar';
+    if (ocultar) document.getElementById('formAdminPanel').hidden = true;
 }
 
 async function eliminarNoticia(id) {
-    if (confirm('¿Estás seguro de que deseas eliminar esta noticia permanentemente?')) {
-        let noticias = await obtenerNoticias();
-        noticias = noticias.filter(n => n.id !== id);
-        guardarNoticias(noticias);
-        
-        // Remover de favoritos
-        const favsStr = localStorage.getItem('nexoNoticiasFavoritos');
-        if (favsStr) {
-            let favs = JSON.parse(favsStr);
-            favs = favs.filter(f => f.id !== id);
-            localStorage.setItem('nexoNoticiasFavoritos', JSON.stringify(favs));
-        }
-        
-        // Si estaba editando justo esa noticia, cancelar
-        if (document.getElementById('noticiaId').value == id) {
-            cancelarEdicion();
-        }
-        
-        renderizarListaAdmin();
-    }
+    if (!confirm('¿Deseas eliminar esta noticia?')) return;
+    const noticias = (await obtenerNoticias()).filter((noticia) => noticia.id !== id);
+    guardarNoticias(noticias);
+    const favoritos = leerArregloLocal('nexoNoticiasFavoritos').filter((favorito) => favorito.id !== id);
+    localStorage.setItem('nexoNoticiasFavoritos', JSON.stringify(favoritos));
+    renderizarListaAdmin();
 }
 
 function finalizarOperacion(mensaje) {
-    document.getElementById('formAdmin').reset();
+    cancelarEdicion(true);
     renderizarListaAdmin();
     alert(mensaje);
 }
 
 function sincronizarFavoritosTrasEdicion(noticiaActualizada) {
-    const favsStr = localStorage.getItem('nexoNoticiasFavoritos');
-    if (favsStr) {
-        let favs = JSON.parse(favsStr);
-        const index = favs.findIndex(f => f.id === noticiaActualizada.id);
-        if (index !== -1) {
-            favs[index] = noticiaActualizada;
-            localStorage.setItem('nexoNoticiasFavoritos', JSON.stringify(favs));
-        }
+    const favoritos = leerArregloLocal('nexoNoticiasFavoritos');
+    const index = favoritos.findIndex((favorito) => favorito.id === noticiaActualizada.id);
+    if (index !== -1) {
+        favoritos[index] = noticiaActualizada;
+        localStorage.setItem('nexoNoticiasFavoritos', JSON.stringify(favoritos));
     }
 }

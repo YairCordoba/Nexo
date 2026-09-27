@@ -1,190 +1,442 @@
-/* Variables globales de la paleta de colores (Diseño Editorial, Quietly Thinking) */
-:root {
-    --color-primary: #111111; /* Negro profundo para textos y acentos */
-    --color-secondary: #ffffff; /* Blanco puro de fondo */
-    --color-text: #333333; /* Gris oscuro para texto base */
-    --color-text-light: #777777; /* Gris claro para metadatos/fechas */
-    --color-border: #eaeaea; /* Gris ultra claro para bordes finos */
-    --color-white: #ffffff;
-    
-    /* Tipografías: Serif para títulos, Sans para ui/body */
-    --font-heading: 'Georgia', 'Times New Roman', serif;
-    --font-primary: 'Inter', 'Helvetica Neue', 'Arial', sans-serif;
-    
-    --border-radius: 2px; /* Bordes casi rectos, aspecto editorial */
-    --transition: all 0.2s ease-in-out;
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/inter-400.ttf') format('truetype');
 }
 
-/* Reset básico */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('../assets/fonts/inter-500.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('../assets/fonts/inter-600.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../assets/fonts/inter-700.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Newsreader';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/newsreader-400.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Newsreader';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('../assets/fonts/newsreader-500.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Newsreader';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('../assets/fonts/newsreader-600.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Newsreader';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../assets/fonts/newsreader-700.ttf') format('truetype');
+}
+
+:root {
+    --color-primary: #1f4f47;
+    --color-secondary: #fffcf7;
+    --color-tertiary: #f3efe7;
+    --color-accent: #c46a4b;
+    --color-text: #1f4f47;
+    --color-text-light: #6b6b63;
+    --color-border: #d7d0c4;
+    --color-mint: #e4efeb;
+    --color-green-soft: #ddeadf;
+    --color-yellow-soft: #f3e3bb;
+    --font-heading: 'Newsreader', Georgia, serif;
+    --font-primary: 'Inter', sans-serif;
+    --radius-shell: 20px;
+    --radius-card: 12px;
+    --radius-control: 9px;
+    --transition: 160ms ease;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    min-height: 100%;
+    background: #f0ece4;
+}
+
 body {
-    font-family: var(--font-primary);
-    background-color: var(--color-secondary);
+    width: 100%;
+    max-width: 700px;
+    min-height: 840px;
+    margin: 0 auto;
+    overflow-x: hidden;
+    background: var(--color-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-shell);
     color: var(--color-text);
-    line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    font-family: var(--font-primary);
+    font-size: 14px;
+    line-height: 1.3;
     -webkit-font-smoothing: antialiased;
 }
 
 main {
-    flex: 1;
-    padding: 0 0 4rem 0;
+    padding: 25px 32px 56px;
 }
 
-/* Layout y Contenedores */
+.page-detail-main {
+    padding-top: 25px;
+}
+
+.copy-mobile {
+    display: none;
+}
+
+a {
+    color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 30px;
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 22px;
+    line-height: 1.2;
+}
+
+p {
+    color: var(--color-text-light);
+}
+
 .container {
     width: 100%;
-    max-width: 1300px; /* Ancho mayor para acomodar sidebar */
-    margin: 0 auto;
-    padding: 0 2rem;
+    margin: 0;
+    padding: 0;
 }
 
-/* Tipografía */
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
-    color: var(--color-primary);
-    font-weight: 700;
+.page-intro {
+    margin-bottom: 29px;
 }
 
-/* Separador de Sección (Breaking News style) */
-.section-divider {
-    display: flex;
-    align-items: center;
-    margin: 4rem 0 2rem 0;
-}
-
-.section-divider h2 {
-    font-family: var(--font-primary);
-    font-size: 1rem;
+.kicker {
+    display: block;
+    margin-bottom: 15px;
+    color: var(--color-accent);
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 16px;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-right: 1rem;
-    white-space: nowrap;
 }
 
-.section-divider .line {
-    flex-grow: 1;
-    height: 1px;
-    background-color: var(--color-border);
+.page-intro h1 {
+    margin-bottom: 23px;
 }
 
-/* Header general */
-header {
-    background-color: var(--color-white);
-    padding: 1.5rem 0;
-    border-bottom: 1px solid var(--color-border);
-}
-
-/* Hero Section (Asimétrico Tipográfico) */
-.hero {
-    background-color: var(--color-white);
-    padding: 4rem 0;
-    margin-bottom: 0;
-    text-align: left;
-}
-
-.hero-grid {
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    gap: 3rem;
-    align-items: end;
-}
-
-.hero h1 {
-    font-size: 5rem;
-    line-height: 1.1;
-    letter-spacing: -1px;
-}
-
-.hero-subtitle {
-    font-size: 1.25rem;
+.page-subtitle {
+    max-width: 636px;
     color: var(--color-text-light);
-    margin-bottom: 1.5rem;
+    font-size: 14px;
+    line-height: 18px;
 }
 
-.hero-border {
-    border-top: 3px solid var(--color-primary);
-    margin-top: 1rem;
-    padding-top: 2rem;
+.btn {
+    display: inline-flex;
+    min-height: 40px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 18px;
+    border: 1px solid transparent;
+    border-radius: var(--radius-control);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+    text-decoration: none;
+    transition: background-color var(--transition), color var(--transition), border-color var(--transition);
 }
 
-/* Layout Principal: Contenido + Sidebar */
-.main-layout {
+.btn-primary {
+    background: var(--color-accent);
+    color: var(--color-secondary);
+}
+
+.btn-primary:hover {
+    background: #a9563d;
+}
+
+.btn-dark {
+    background: var(--color-primary);
+    color: var(--color-secondary);
+}
+
+.btn-outline {
+    border-color: var(--color-border);
+    background: transparent;
+    color: var(--color-primary);
+}
+
+.btn-danger {
+    border-color: #c46a4b;
+    background: transparent;
+    color: #a9563d;
+}
+
+.btn:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+
+.home-hero {
     display: grid;
-    grid-template-columns: 3fr 1fr;
-    gap: 3rem;
+    grid-template-columns: 360px 238px;
+    gap: 38px;
+    align-items: start;
+    margin: 0 0 58px;
 }
 
-/* Grid básico para otras páginas */
-.grid {
+.home-hero-copy {
+    min-width: 0;
+}
+
+.home-hero h1 {
+    margin-bottom: 23px;
+}
+
+.home-hero .page-subtitle {
+    margin-bottom: 20px;
+}
+
+.hero-featured-slot {
+    width: 238px;
+    height: 180px;
+    overflow: hidden;
+    border-radius: var(--radius-card);
+    background: var(--color-mint);
+}
+
+.hero-featured-slot img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    background: var(--color-mint);
+}
+
+.hero-featured-slot img[src$="educacion.svg"],
+.hero-featured-slot img[src$="tecnologia.svg"],
+.hero-featured-slot img[src$="turismo.svg"],
+.hero-featured-slot img[src$="comercio.svg"] {
+    object-fit: contain;
+    object-position: center;
+    padding: 12px;
+}
+
+.section-heading {
+    margin-bottom: 22px;
+}
+
+.section-heading h2 {
+    font-size: 22px;
+}
+
+.news-grid {
     display: grid;
-    gap: 2rem;
+    grid-template-columns: repeat(3, 200px);
+    gap: 18px;
 }
 
-.grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
-.grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
-.grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+.home-categories {
+    margin-top: 36px;
+}
 
-/* Footer */
+.home-categories .section-heading {
+    margin-bottom: 15px;
+}
+
+.favorites-help {
+    margin: 38px 0 29px;
+    font-size: 14px;
+    line-height: 26px;
+}
+
+.categories-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.category-tag {
+    display: inline-flex;
+    height: 28px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 14px;
+    border: 0;
+    border-radius: 14px;
+    background: var(--color-mint);
+    color: var(--color-accent);
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 16px;
+    text-decoration: none;
+    transition: transform var(--transition), filter var(--transition), background-color var(--transition);
+}
+
+.category-tag:hover {
+    filter: brightness(0.97);
+    transform: translateY(-1px);
+}
+
+.category-tag[data-categoria="Todas"],
+.category-tag.active {
+    background: var(--color-accent);
+    color: var(--color-secondary);
+}
+
+.category-tag[data-categoria="Tecnología"] {
+    background: var(--color-green-soft);
+    color: #2c6b58;
+}
+
+.category-tag[data-categoria="Turismo"] {
+    background: var(--color-yellow-soft);
+    color: #8a5b28;
+}
+
+.category-tag[data-categoria="Comercio"] {
+    background: #e9e3f1;
+    color: #6b4d83;
+}
+
+.loading-state,
+.feedback {
+    display: grid;
+    min-height: 120px;
+    place-items: center;
+    padding: 24px;
+    border: 1px dashed var(--color-border);
+    color: var(--color-text-light);
+    text-align: center;
+}
+
+.feedback-error {
+    border-color: #dfb3a6;
+    background: #fff5f1;
+    color: #a9563d;
+}
+
 footer {
-    background-color: #fafafa;
+    margin-top: 24px;
+    padding: 32px 32px 24px;
     border-top: 1px solid var(--color-border);
-    padding: 4rem 0 2rem;
-    margin-top: auto;
+    background: #faf7f1;
 }
 
 .footer-content {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
-    gap: 3rem;
-    margin-bottom: 3rem;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.footer-col p,
+.footer-col li,
+.footer-bottom {
+    color: var(--color-text-light);
+    font-size: 11px;
+    line-height: 1.4;
 }
 
 .footer-col h3 {
+    margin-bottom: 10px;
     font-family: var(--font-primary);
-    font-size: 0.9rem;
+    font-size: 11px;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 1.5rem;
-}
-
-.footer-col p {
-    color: var(--color-text-light);
-    font-size: 0.95rem;
 }
 
 .footer-col ul {
     list-style: none;
 }
 
-.footer-col ul li {
-    margin-bottom: 0.75rem;
+.footer-col li {
+    margin-bottom: 6px;
 }
 
-.footer-col ul li a {
-    color: var(--color-text);
+.footer-col a {
     text-decoration: none;
-    transition: var(--transition);
 }
 
-.footer-col ul li a:hover {
+.footer-col a:hover {
     color: var(--color-primary);
-    text-decoration: underline;
 }
 
 .footer-bottom {
-    text-align: left;
-    padding-top: 2rem;
-    border-top: 1px solid var(--color-border);
-    font-size: 0.85rem;
-    color: var(--color-text-light);
     display: flex;
     justify-content: space-between;
+    gap: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--color-border);
+}
+
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
 }

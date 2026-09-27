@@ -4,66 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Favoritos - Nexo Noticias</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/components.css">
     <link rel="stylesheet" href="../css/responsive.css">
 </head>
 <body>
     <header>
-        <div class="container navbar">
-            <a href="../../index.html" class="logo">
-                <span class="logo-main">NEXO</span>
-                <span class="logo-sub">Noticias.</span>
-            </a>
-            
-            <nav>
+        <div class="navbar">
+            <a href="../../index.html" class="logo"><span class="logo-main">POLITÉCNICO</span></a>
+            <nav aria-label="Navegación principal">
                 <ul class="nav-links" id="navLinks">
                     <li><a href="../../index.html">Inicio</a></li>
                     <li><a href="noticias.html">Noticias</a></li>
-                    <li><a href="favoritos.html" class="active">Favoritos</a></li>
+                    <li><a href="noticias.html?categoria=todas">Categorías</a></li>
                     <li><a href="contacto.html">Contacto</a></li>
                 </ul>
             </nav>
-            
             <div class="nav-actions">
-                <button class="nav-toggle" id="navToggle">☰</button>
-                <span style="font-size: 1.2rem; cursor: pointer;">🔍</span>
-                <span style="font-size: 1.2rem; cursor: pointer;">🌙</span>
-                <a href="contacto.html" class="btn btn-primary" style="margin-left: 1rem;">Contact →</a>
+                <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false"></button>
+                <a href="noticias.html" class="btn btn-primary">Explorar</a>
             </div>
         </div>
     </header>
 
-    <main>
-        <div class="container" style="padding-top: 3rem;">
-            <div style="border-bottom: 2px solid var(--color-primary); padding-bottom: 1rem; margin-bottom: 3rem;">
-                <h1 style="font-size: 3rem; margin: 0; line-height: 1;">Mis Noticias Guardadas</h1>
+    <main class="page-favorites">
+        <section class="page-intro" aria-labelledby="favoritesTitle">
+            <span class="kicker">Colección / Favoritos</span>
+            <h1 id="favoritesTitle">Tus historias guardadas</h1>
+            <p class="page-subtitle">Un espacio personal para volver a lo que quieres leer con calma.</p>
+        </section>
+        <section aria-labelledby="savedTitle">
+            <div class="section-heading"><h2 id="savedTitle">Guardadas recientemente</h2></div>
+            <div class="news-grid" id="contenedorFavoritos" aria-live="polite"></div>
+            <div id="mensajeVacioFavs" class="feedback" style="display: none; margin-top: 20px;">
+                <div><p>No tienes noticias guardadas todavía.</p><a href="noticias.html" class="btn btn-primary" style="margin-top: 16px;">Explorar noticias</a></div>
             </div>
-            
-            <div class="grid grid-cols-3" id="contenedorFavoritos">
-                <!-- JS inyectará las tarjetas aquí -->
-            </div>
-            
-            <div id="mensajeVacioFavs" style="display: none; text-align: center; padding: 5rem 2rem; background: #fafafa; border: 1px dashed var(--color-border);">
-                <h3 style="font-size: 1.5rem; font-family: var(--font-heading); margin-bottom: 1rem; color: var(--color-primary);">No tienes noticias guardadas todavía.</h3>
-                <p style="color: var(--color-text-light); margin-bottom: 2rem;">Explora nuestras noticias y guarda las que quieras consultar después.</p>
-                <a href="noticias.html" class="btn btn-outline">Explorar noticias →</a>
-            </div>
-        </div>
+        </section>
+        <p class="favorites-help">Puedes guardar historias desde cualquier tarjeta de noticias.</p>
+        <a href="noticias.html" class="btn btn-primary">Explorar noticias</a>
     </main>
 
     <footer>
-        <div class="container">
-            <div class="footer-bottom" style="border-top: none;">
-                <p>&copy; 2026 Nexo Noticias. Proyecto Académico.</p>
-                <p>Designed for Quietly Thinking</p>
-            </div>
-        </div>
+        <div class="footer-content"><div class="footer-col"><a href="../../index.html" class="logo" style="color: var(--color-primary);"><span class="logo-main">POLITÉCNICO</span></a><p>Un espacio digital para descubrir noticias y experiencias del campus.</p></div><div class="footer-col"><h3>Explorar</h3><ul><li><a href="../../index.html">Inicio</a></li><li><a href="noticias.html">Noticias</a></li><li><a href="favoritos.html">Favoritos</a></li></ul></div><div class="footer-col"><h3>Gestión</h3><ul><li><a href="contacto.html">Hablemos</a></li><li><a href="admin.html">Administración</a></li></ul></div></div>
+        <div class="footer-bottom"><span>© 2026 Politécnico.</span><span>Frontend Semana 5</span></div>
     </footer>
 
     <script src="../js/utils.js"></script>
