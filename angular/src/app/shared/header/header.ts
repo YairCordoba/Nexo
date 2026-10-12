@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, ElementRef, HostListener, inject, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
@@ -11,6 +11,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class HeaderComponent {
   readonly router = inject(Router);
+  private readonly element: ElementRef<HTMLElement> = inject(ElementRef);
   readonly open = signal(false);
   readonly url = signal(this.router.url);
   get category(): boolean {
@@ -27,5 +28,21 @@ export class HeaderComponent {
         this.open.set(false);
       }
     });
+  }
+  @HostListener('document:keydown.escape')
+  closeWithEscape(): void {
+    if (!this.open()) return;
+    this.open.set(false);
+    this.element.nativeElement.querySelector<HTMLButtonElement>('#navToggle')?.focus();
+  }
+
+  @HostListener('document:click', ['$event'])
+  closeOutside(event: MouseEvent): void {
+    if (
+      this.open() &&
+      event.target instanceof Node &&
+      !this.element.nativeElement.contains(event.target)
+    )
+      this.open.set(false);
   }
 }

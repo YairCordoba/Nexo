@@ -36,13 +36,19 @@ Los hosts usan `display: contents` para que la introducción de componentes no a
 
 ## Límites heredados
 
-Administración y favoritos persisten solo en el navegador. Contacto no envía mensajes a un servidor. Administración muestra tres noticias recientes; favoritos muestra hasta tres. Los estados editoriales se calculan desde la marca destacada y el índice, no desde un flujo real de publicación. Comercio no aparece entre los filtros visibles y la búsqueda permanece oculta. No se añadió autenticación porque no existe en el prototipo.
+Administración y favoritos persisten solo en el navegador. Contacto no envía mensajes a un servidor y ahora lo indica explícitamente. No se añadió autenticación porque no existe en el prototipo.
+
+La revisión funcional posterior elimina los límites de tres registros en administración y favoritos, los estados editoriales ficticios y la búsqueda oculta. Añade Comercio al filtro y enlaces a favoritos y gestión en la cabecera. Las fechas se interpretan como días de calendario, sin desplazamiento por zona horaria; últimas noticias se ordena por fecha descendente, con id descendente para resolver empates. Las estadísticas reflejan noticias, categorías y favoritos reales.
+
+Estas correcciones cambian intencionalmente el contenido y la altura de algunas vistas. Las comparaciones actuales verifican estilos compartidos y geometría de cabecera y título, no la reproducción de los errores del prototipo. La cabecera colapsa antes de 900 px para acomodar sus seis enlaces; las demás adaptaciones mantienen sus breakpoints.
 
 ## Verificación
 
-La suite de Playwright compara seis vistas a 390, 768 y 1280 px: geometría con tolerancia de 2 px, tipografía, colores, bordes, texto y desbordamiento. Guarda capturas completas de ambas versiones y mediciones JSON como adjuntos del reporte HTML. Los escenarios funcionales comprueban navegación SPA, menú activo, filtros, favoritos, validación de contacto y CRUD con recarga.
+La suite de Playwright compara seis vistas a 390, 768 y 1280 px: geometría compartida con tolerancia de 2 px, tipografía, colores, bordes y desbordamiento. Guarda capturas completas de ambas versiones y mediciones JSON como adjuntos del reporte HTML. Los escenarios funcionales comprueban navegación SPA, menú activo, filtros, favoritos, validación de contacto y CRUD con recarga. Las regresiones amplían la cobertura a los doce registros, cuatro zonas horarias, creación cerca de medianoche, catálogo vacío, cancelación de eliminación y anchos de 320 a 1280 px.
 
-Resultado: 28 pruebas aprobadas; 18 comparaciones de paridad y 10 escenarios funcionales. La compilación de producción verifica TypeScript y las plantillas Angular con opciones estrictas y terminó correctamente.
+Resultado histórico de la migración: 28 pruebas aprobadas. La suite ampliada tiene 43 casos: 18 comparaciones visuales, 10 escenarios funcionales y 15 regresiones. La compilación de producción verifica TypeScript y las plantillas Angular con opciones estrictas. Los enlaces HTML estáticos se prueban contra el build, además de las rutas internas de Angular.
+
+La revisión funcional del 11 de octubre obtuvo 43 casos aprobados en desarrollo y 43 contra el build de Pages. Se ejecutaron controles negativos contra la versión publicada anterior: las pruebas detectaron los problemas de favoritos, fechas y orden de últimas noticias. Esto valida los escenarios cubiertos, no garantiza ausencia absoluta de cualquier defecto ni constituye una certificación de rendimiento o accesibilidad.
 
 Para comparar la presentación final se precargan las fuentes antes de permitir la respuesta del JSON en ambas aplicaciones. Esto evita que el cálculo único del detalle HTML mida una fuente provisional. Las imágenes con carga diferida se cargan en el entorno de pruebas antes de capturar. Estas medidas no modifican el código del prototipo. Angular, además, recalcula el detalle al cargar las fuentes, cambiar noticia o redimensionar la ventana mediante un observador que se libera al destruir el componente.
 

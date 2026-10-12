@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { News } from './news.model';
+import { todayDate } from './news-utils';
 
 const NEWS_KEY = 'nexoNoticiasBD';
 const VERSION_KEY = 'nexoNoticiasDataVersion';
@@ -58,7 +59,7 @@ export class NewsService {
     const item: News = {
       ...input,
       id: existing?.id ?? Math.max(0, ...this.news().map((n) => n.id)) + 1,
-      fecha: existing?.fecha ?? new Date().toISOString().split('T')[0],
+      fecha: existing?.fecha ?? todayDate(),
       destacada: existing?.destacada ?? false,
     };
     this.persist(
@@ -88,21 +89,6 @@ export class NewsService {
   image(item: Pick<News, 'imagen'>): string {
     const path = item.imagen?.trim() || 'src/assets/images/stock/educacion.jpg';
     return /^(?:https?:|data:|blob:|\/)/i.test(path) ? path : new URL(path, document.baseURI).href;
-  }
-
-  date(value: string): string {
-    return new Date(value).toLocaleDateString('es-ES', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    });
-  }
-
-  status(item: News, index: number): { label: string; className: string } {
-    if (item.destacada) return { label: 'Publicada', className: 'status-published' };
-    return index % 3 === 1
-      ? { label: 'Borrador', className: 'status-draft' }
-      : { label: 'Revisión', className: 'status-review' };
   }
 
   private persist(items: News[]): void {

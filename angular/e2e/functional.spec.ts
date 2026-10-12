@@ -104,6 +104,7 @@ test('detalle inexistente y error del JSON tienen mensajes visibles', async ({ p
     route.fulfill({ status: 503, body: 'No disponible' }),
   );
   await page.goto(base + '/noticias');
+  await page.reload();
   await expect(page.locator('[role=alert]')).toContainText('No se pudo cargar');
 });
 
@@ -171,6 +172,7 @@ test('formularios rechazan espacios y no guardan registros vacíos', async ({ pa
 
 test('detalle mantiene lectura sin superposición al cambiar el ancho', async ({ page }) => {
   await page.goto(base + '/detalle?id=1');
+  await expect(page.locator('.detail-text')).toBeVisible();
   for (const width of [390, 768, 1280, 390]) {
     await page.setViewportSize({ width, height: 900 });
     await expect

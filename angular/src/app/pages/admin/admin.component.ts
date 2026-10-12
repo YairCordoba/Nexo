@@ -1,7 +1,17 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Injector,
+  afterNextRender,
+  computed,
+  inject,
+  signal,
+  viewChild,
+} from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NewsService } from '../../core/news.service';
 import { News } from '../../core/news.model';
+import { latestFirst, formatNewsDate } from '../../core/news-utils';
 
 @Component({
   selector: 'app-admin',
@@ -13,16 +23,18 @@ import { News } from '../../core/news.model';
 export class AdminComponent {
   readonly service = inject(NewsService);
   private readonly builder = inject(FormBuilder);
+  private readonly injector = inject(Injector);
+  readonly panel = viewChild<ElementRef<HTMLElement>>('panel');
+  readonly newButton = viewChild<ElementRef<HTMLButtonElement>>('newButton');
   readonly editing = signal<number | undefined>(undefined);
   readonly panelOpen = signal(false);
-  readonly sorted = computed(() =>
-    [...this.service.news()].sort((a, b) => Date.parse(b.fecha) - Date.parse(a.fecha)),
-  );
+  readonly sorted = computed(() => [...this.service.news()].sort(latestFirst));
   readonly stats = computed(() => {
-    const states = this.sorted().map((news, index) => this.service.status(news, index).label);
-    return ['Publicada', 'Borrador', 'Revisión'].map((label) =>
-      String(states.filter((state) => state === label).length).padStart(2, '0'),
-    );
+    return [
+      this.service.news().length,
+      new Set(this.service.news().map((news) => news.categoria)).size,
+      this.service.favorites().length,
+    ].map((value) => String(value).padStart(2, '0'));
   });
   readonly form = this.builder.nonNullable.group({
     titulo: ['', [Validators.required, Validators.pattern(/\S/)]],
@@ -38,8 +50,9 @@ export class AdminComponent {
   }
 
   create(): void {
-    this.cancel();
+    this.cancel(false);
     this.panelOpen.set(true);
+    this.focusEditor();
   }
 
   edit(news: News): void {
@@ -53,6 +66,7 @@ export class AdminComponent {
       contenido: news.contenido,
     });
     this.panelOpen.set(true);
+    this.focusEditor();
   }
 
   submit(): void {
@@ -77,32 +91,28 @@ export class AdminComponent {
     window.alert(message);
   }
 
-  cancel(): void {
+  cancel(returnFocus = true): void {
     this.editing.set(undefined);
     this.panelOpen.set(false);
     this.form.reset({ categoria: 'Educación' });
+    if (returnFocus)
+      afterNextRender(() => this.newButton()?.nativeElement.focus(), { injector: this.injector });
   }
 
   remove(id: number): void {
     if (window.confirm('¿Deseas eliminar esta noticia?')) this.service.remove(id);
   }
 
-  meta(value: string): string {
-    const date = new Date(value);
-    const months = [
-      'ENE',
-      'FEB',
-      'MAR',
-      'ABR',
-      'MAY',
-      'JUN',
-      'JUL',
-      'AGO',
-      'SEP',
-      'OCT',
-      'NOV',
-      'DIC',
-    ];
-    return `${String(date.getDate()).padStart(2, '0')} ${months[date.getMonth()]} ${date.getFullYear()}`;
+  readonly meta = formatNewsDate;
+  private focusEditor(): void {
+    afterNextRender(
+      () => {
+        this.panel()?.nativeElement.scrollIntoView({ block: 'start' });
+        this.panel()
+          ?.nativeElement.querySelector<HTMLInputElement>('#titulo')
+          ?.focus({ preventScroll: true });
+      },
+      { injector: this.injector },
+    );
   }
 }

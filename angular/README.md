@@ -36,10 +36,12 @@ Las plantillas usan interpolación, property binding, event binding, `@if` y `@f
 
 ## GitHub Pages
 
-`npm run build:pages` genera el sitio con base `/Nexo/`. En producción las rutas usan fragmentos (`#/noticias`, `#/detalle?id=1`) para que los enlaces y la recarga funcionen en un servidor estático. El desarrollo local conserva las rutas habituales. El workflow `.github/workflows/angular-pages.yml` compila con Node 26 y publica el resultado desde `feature/angular-migration`. Un administrador debe configurar Pages con origen GitHub Actions y permitir esa rama en el entorno `github-pages`.
+`npm run build:pages` genera el sitio con base `/Nexo/`. En producción las rutas usan fragmentos (`#/noticias`, `#/detalle?id=1`) para que los enlaces y la recarga funcionen en un servidor estático. El desarrollo local conserva las rutas habituales. El build también genera redirecciones para los enlaces HTML anteriores, conservando sus parámetros. El workflow `.github/workflows/angular-pages.yml` compila con Node 26 y publica desde `main`. Un administrador debe configurar Pages con origen GitHub Actions y permitir esa rama en el entorno `github-pages`.
 
 ## Persistencia
 
-El JSON local proporciona las noticias iniciales. Las modificaciones y favoritos se conservan en `localStorage`, sin escribir al archivo JSON. El contacto muestra una confirmación simulada y no envía correo. Los puertos 3000 y 4200 tienen almacenamiento separado: para comparar una operación hay que realizarla en ambas versiones.
+El JSON local proporciona las noticias iniciales. Las modificaciones y favoritos se conservan en `localStorage`, sin escribir al archivo JSON. El contacto confirma la validación de los datos y aclara que no envía correo. Los puertos 3000 y 4200 tienen almacenamiento separado: para comparar una operación hay que realizarla en ambas versiones.
+
+Las regresiones cubren todos los favoritos y registros administrativos, edición y eliminación con persistencia, fechas de calendario en cuatro zonas horarias, orden cronológico de últimas noticias, búsqueda y filtros, navegación móvil y formularios. Las comparaciones visuales conservan los estilos compartidos del prototipo; no exigen reproducir sus errores funcionales. Para comprobar también los enlaces HTML estáticos, indicar `PAGES_URL` al ejecutar las pruebas contra el build servido localmente.
 
 La documentación de decisiones y comprobaciones está en `PARIDAD.md`. Los comentarios en el código se limitan a rutas, almacenamiento y decisiones de presentación que no se deducen del nombre de una función.

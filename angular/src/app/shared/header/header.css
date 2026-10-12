@@ -43,7 +43,7 @@ header {
   height: 58px;
   align-items: center;
   justify-content: flex-end;
-  gap: 28px;
+  gap: 16px;
   list-style: none;
   margin-right: 16px;
 }
@@ -128,7 +128,7 @@ header {
   outline: 3px solid #f1c678;
   outline-offset: 3px;
 }
-@media (max-width: 699px) {
+@media (max-width: 899px) {
   header {
     padding: 24px 24px 0;
   }

@@ -37,7 +37,7 @@
 .admin-row {
   position: relative;
   display: grid;
-  grid-template-columns: 240px 88px 1fr;
+  grid-template-columns: minmax(0, 1fr) max-content max-content auto;
   min-height: 48px;
   align-items: center;
   gap: 24px;
@@ -88,11 +88,10 @@
 }
 
 .admin-row__actions {
-  position: absolute;
-  right: 14px;
+  position: static;
   display: flex;
   gap: 6px;
-  opacity: 0;
+  opacity: 1;
   transition: opacity var(--transition);
 }
 

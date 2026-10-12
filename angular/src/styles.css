@@ -391,6 +391,10 @@ textarea.form-control {
   color: #a9563d;
   font-size: 10px;
 }
+.news-search {
+  margin-top: 20px;
+  max-width: 636px;
+}
 app-root {
   display: contents;
 }

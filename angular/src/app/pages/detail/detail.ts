@@ -4,6 +4,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Title } from '@angular/platform-browser';
 import { NewsService } from '../../core/news.service';
 import { NewsCardComponent } from '../../shared/news-card/card';
+import { formatNewsDate } from '../../core/news-utils';
 
 @Component({
   selector: 'app-detail',
@@ -67,24 +68,7 @@ export class DetailComponent {
       });
     });
   }
-  meta(value: string): string {
-    const date = new Date(value);
-    const months = [
-      'ENE',
-      'FEB',
-      'MAR',
-      'ABR',
-      'MAY',
-      'JUN',
-      'JUL',
-      'AGO',
-      'SEP',
-      'OCT',
-      'NOV',
-      'DIC',
-    ];
-    return `${String(date.getDate()).padStart(2, '0')} ${months[date.getMonth()]} ${date.getFullYear()}`;
-  }
+  readonly meta = formatNewsDate;
   fallback(event: Event): void {
     const image = event.target as HTMLImageElement;
     if (!image.src.endsWith('/educacion.jpg')) image.src = this.data.image({ imagen: '' });

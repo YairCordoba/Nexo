@@ -10,8 +10,9 @@
     ><input
       type="search"
       id="inputBusqueda"
-      class="visually-hidden"
+      class="form-control news-search"
       aria-label="Buscar noticias"
+      placeholder="Buscar noticias"
       (input)="updateSearch($event)"
     />
   </section>
@@ -23,7 +24,7 @@
           class="category-tag"
           [class.active]="category() === item"
           [attr.data-categoria]="item"
-          (click)="category.set(item)"
+          (click)="selectCategory(item)"
         >
           {{ item }}
         </button>

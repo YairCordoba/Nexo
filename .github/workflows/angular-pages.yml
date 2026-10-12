@@ -2,7 +2,7 @@ name: Publicar Angular en GitHub Pages
 
 on:
   push:
-    branches: [feature/angular-migration]
+    branches: [main]
   workflow_dispatch:
 
 permissions:

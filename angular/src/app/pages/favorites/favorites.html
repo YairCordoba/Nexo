@@ -9,7 +9,7 @@
       <h2 id="savedTitle">Guardadas recientemente</h2>
     </div>
     <div class="news-grid" id="contenedorFavoritos" aria-live="polite">
-      @for (item of data.favorites().slice(0, 3); track item.id) {
+      @for (item of data.favorites().slice().reverse(); track item.id) {
         <app-news-card [news]="item" />
       }
     </div>

@@ -1,8 +1,9 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NewsService } from '../../core/news.service';
 import { NewsCardComponent } from '../../shared/news-card/card';
+import { latestFirst } from '../../core/news-utils';
 
 @Component({
   selector: 'app-news',
@@ -13,7 +14,9 @@ import { NewsCardComponent } from '../../shared/news-card/card';
 })
 export class NewsComponent {
   readonly data = inject(NewsService);
-  readonly categories = ['Todas', 'Educación', 'Tecnología', 'Turismo'];
+  private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
+  readonly categories = ['Todas', 'Educación', 'Tecnología', 'Turismo', 'Comercio'];
   readonly category = signal('Todas');
   readonly search = signal('');
   readonly filtered = computed(() =>
@@ -28,10 +31,10 @@ export class NewsComponent {
         (n) =>
           !this.search() ||
           [n.titulo, n.resumen, n.categoria].some((s) =>
-            s.toLowerCase().includes(this.search().toLowerCase().trim()),
+            this.normalize(s).includes(this.normalize(this.search().trim())),
           ),
       )
-      .sort((a, b) => Date.parse(b.fecha) - Date.parse(a.fecha)),
+      .sort(latestFirst),
   );
   constructor() {
     void this.data.load();
@@ -53,5 +56,12 @@ export class NewsComponent {
   }
   updateSearch(event: Event): void {
     this.search.set((event.target as HTMLInputElement).value);
+  }
+  selectCategory(category: string): void {
+    void this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { categoria: category === 'Todas' ? null : category },
+      queryParamsHandling: 'merge',
+    });
   }
 }

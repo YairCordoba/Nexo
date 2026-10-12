@@ -2,6 +2,7 @@ import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NewsService } from '../../core/news.service';
 import { NewsCardComponent } from '../../shared/news-card/card';
+import { latestFirst } from '../../core/news-utils';
 
 @Component({
   selector: 'app-home',
@@ -15,12 +16,7 @@ export class HomeComponent {
   readonly principal = computed(
     () => this.data.news().find((n) => n.destacada) || this.data.news()[0],
   );
-  readonly restantes = computed(() =>
-    this.data
-      .news()
-      .filter((n) => n.id !== this.principal()?.id)
-      .slice(0, 3),
-  );
+  readonly restantes = computed(() => this.data.news().slice().sort(latestFirst).slice(0, 3));
   constructor() {
     void this.data.load();
   }

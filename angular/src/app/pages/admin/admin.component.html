@@ -2,36 +2,34 @@
   <section class="page-intro" aria-labelledby="adminTitle">
     <span class="kicker">Gestión / Administración</span>
     <h1 id="adminTitle">Panel de noticias</h1>
-    <p class="page-subtitle">Gestiona publicaciones y estados editoriales desde un único lugar.</p>
+    <p class="page-subtitle">Crea, edita y elimina noticias desde un único lugar.</p>
   </section>
-  <section class="admin-stats" aria-label="Resumen editorial">
+  <section class="admin-stats" aria-label="Resumen del catálogo">
     <div class="admin-stat">
-      <strong id="statPublished">{{ stats()[0] }}</strong
-      ><span>Publicadas</span>
+      <strong id="statNews">{{ stats()[0] }}</strong
+      ><span>Noticias</span>
     </div>
     <div class="admin-stat">
-      <strong id="statDrafts">{{ stats()[1] }}</strong
-      ><span>Borradores</span>
+      <strong id="statCategories">{{ stats()[1] }}</strong
+      ><span>Categorías</span>
     </div>
     <div class="admin-stat">
-      <strong id="statReview">{{ stats()[2] }}</strong
-      ><span>Pendientes</span>
+      <strong id="statFavorites">{{ stats()[2] }}</strong
+      ><span>Favoritos</span>
     </div>
   </section>
   <section aria-labelledby="publicationsTitle">
     <div class="section-heading">
-      <h2 id="publicationsTitle">Últimas publicaciones</h2>
+      <h2 id="publicationsTitle">Todas las noticias</h2>
     </div>
     <div id="listaAdmin" class="admin-list" aria-live="polite">
       @if (service.error()) {
         <div class="feedback feedback-error">{{ service.error() }}</div>
       }
-      @for (news of sorted().slice(0, 3); track news.id; let index = $index) {
-        <div class="admin-row">
-          <span class="admin-row__title">{{ news.titulo }}</span>
-          <span [class]="'status-tag ' + service.status(news, index).className">{{
-            service.status(news, index).label
-          }}</span>
+      @for (news of sorted(); track news.id) {
+        <div class="admin-row" [attr.data-id]="news.id">
+          <span class="admin-row__title" [title]="news.titulo">{{ news.titulo }}</span>
+          <span class="status-tag status-published">{{ news.categoria }}</span>
           <span class="admin-row__date">{{ meta(news.fecha) }}</span>
           <span class="admin-row__actions">
             <button type="button" class="btn btn-outline" (click)="edit(news)">Editar</button>
@@ -45,11 +43,18 @@
       }
     </div>
   </section>
-  <button type="button" class="btn btn-primary new-news" id="btnNuevaNoticia" (click)="create()">
+  <button
+    type="button"
+    class="btn btn-primary new-news"
+    id="btnNuevaNoticia"
+    #newButton
+    (click)="create()"
+  >
     Nueva noticia
   </button>
   <section
     id="formAdminPanel"
+    #panel
     class="admin-form-panel"
     [hidden]="!panelOpen()"
     aria-labelledby="formAdminTitle"
