@@ -17,6 +17,29 @@ async function openFavorites(page: Page) {
   await expect(page.locator('#favoritesTitle')).toBeVisible();
 }
 
+test('administración espera el JSON antes de permitir cambios', async ({ page }) => {
+  let release!: () => void;
+  const pending = new Promise<void>((resolve) => (release = resolve));
+  await page.route('**/src/data/noticias.json', async (route) => {
+    await pending;
+    await route.fulfill({ json: records });
+  });
+  await page.goto(base + '/admin');
+  await expect(page.locator('#btnNuevaNoticia')).toBeDisabled();
+  await expect(page.locator('#btnNuevaNoticia')).toHaveText('Cargando noticias…');
+  release();
+  await expect(page.locator('.admin-row')).toHaveCount(12);
+  await expect(page.locator('#btnNuevaNoticia')).toBeEnabled();
+  page.on('dialog', (dialog) => dialog.accept());
+  await page.locator('#btnNuevaNoticia').click();
+  for (const field of ['titulo', 'autor', 'resumen', 'contenido'])
+    await page.locator('#' + field).fill('Registro después de la carga');
+  await page.locator('#btnSubmitAdmin').click();
+  await expect(page.locator('.admin-row')).toHaveCount(13);
+  await page.reload();
+  await expect(page.locator('.admin-row')).toHaveCount(13);
+});
+
 for (const width of [390, 1280]) {
   test(`todos los favoritos, edición y eliminación sincronizadas a ${width}px`, async ({
     page,

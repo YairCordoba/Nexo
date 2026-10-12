@@ -48,9 +48,16 @@
     class="btn btn-primary new-news"
     id="btnNuevaNoticia"
     #newButton
+    [disabled]="!service.loaded()"
     (click)="create()"
   >
-    Nueva noticia
+    {{
+      service.loaded()
+        ? 'Nueva noticia'
+        : service.error()
+          ? 'Catálogo no disponible'
+          : 'Cargando noticias…'
+    }}
   </button>
   <section
     id="formAdminPanel"

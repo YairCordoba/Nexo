@@ -50,6 +50,7 @@ export class AdminComponent {
   }
 
   create(): void {
+    if (!this.service.loaded()) return;
     this.cancel(false);
     this.panelOpen.set(true);
     this.focusEditor();

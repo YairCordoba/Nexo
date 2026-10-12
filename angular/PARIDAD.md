@@ -50,6 +50,8 @@ Resultado histórico de la migración: 28 pruebas aprobadas. La suite ampliada t
 
 La revisión funcional del 11 de octubre obtuvo 43 casos aprobados en desarrollo y 43 contra el build de Pages. Se ejecutaron controles negativos contra la versión publicada anterior: las pruebas detectaron los problemas de favoritos, fechas y orden de últimas noticias. Esto valida los escenarios cubiertos, no garantiza ausencia absoluta de cualquier defecto ni constituye una certificación de rendimiento o accesibilidad.
 
+La validación posterior en GitHub Pages detectó una carrera con la carga inicial del JSON: crear antes de terminar la lectura podía perder el registro. Administración ahora bloquea la creación hasta tener el catálogo disponible. Una regresión con la respuesta retenida verifica el bloqueo y la persistencia al recargar; la suite pasa a 44 casos.
+
 Para comparar la presentación final se precargan las fuentes antes de permitir la respuesta del JSON en ambas aplicaciones. Esto evita que el cálculo único del detalle HTML mida una fuente provisional. Las imágenes con carga diferida se cargan en el entorno de pruebas antes de capturar. Estas medidas no modifican el código del prototipo. Angular, además, recalcula el detalle al cargar las fuentes, cambiar noticia o redimensionar la ventana mediante un observador que se libera al destruir el componente.
 
 | Validación                                               | Resultado                                         |
