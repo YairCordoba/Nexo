@@ -1,0 +1,101 @@
+<main class="page-contact">
+  <section class="page-intro" aria-labelledby="contactTitle">
+    <span class="kicker">Conexión / Contacto</span>
+    <h1 id="contactTitle">Hablemos</h1>
+    <p class="page-subtitle">
+      <span class="copy-desktop">Un canal directo para preguntas, propuestas y alianzas.</span
+      ><span class="copy-mobile">Formulario de contacto en una sola columna.</span>
+    </p>
+  </section>
+
+  <div
+    id="mensajeExito"
+    class="feedback"
+    style="margin-bottom: 20px"
+    [hidden]="!sent()"
+    role="status"
+  >
+    <div>
+      <strong>¡Mensaje enviado correctamente!</strong>
+      <p>Gracias por escribirnos.</p>
+    </div>
+  </div>
+
+  <div class="contact-layout">
+    <section class="contact-info" aria-labelledby="writeTitle">
+      <h2 id="writeTitle">Escríbenos</h2>
+      <p class="contact-details">
+        <span>hola@nexo.edu.co</span><span>Lun–Vie</span><span>8:00–17:00</span
+        ><span class="contact-location">Pereira, Colombia</span>
+      </p>
+    </section>
+
+    <form
+      id="formContacto"
+      class="contact-form"
+      [formGroup]="form"
+      (ngSubmit)="submit()"
+      [hidden]="sent()"
+      novalidate
+    >
+      <div class="form-group">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input
+          type="text"
+          id="nombre"
+          class="form-control"
+          formControlName="nombre"
+          [attr.aria-invalid]="invalid('nombre')"
+          placeholder="Camilo Escobar"
+          required
+          minlength="3"
+        />
+        <span
+          class="form-error"
+          id="errorNombre"
+          [style.display]="invalid('nombre') ? 'block' : 'none'"
+          >El nombre debe tener al menos 3 caracteres.</span
+        >
+      </div>
+      <div class="form-group">
+        <label for="correo" class="form-label">Correo</label>
+        <input
+          type="email"
+          id="correo"
+          class="form-control"
+          formControlName="correo"
+          [attr.aria-invalid]="invalid('correo')"
+          placeholder="camilo@correo.co"
+          required
+        />
+        <span
+          class="form-error"
+          id="errorCorreo"
+          [style.display]="invalid('correo') ? 'block' : 'none'"
+          >Ingresa un correo válido.</span
+        >
+      </div>
+      <div class="form-group">
+        <label for="mensaje" class="form-label">Mensaje</label>
+        <textarea
+          id="mensaje"
+          class="form-control"
+          formControlName="mensaje"
+          [attr.aria-invalid]="invalid('mensaje')"
+          placeholder="Cuéntanos en qué podemos ayudarte."
+          required
+          minlength="10"
+        ></textarea>
+        <span
+          class="form-error"
+          id="errorMensaje"
+          [style.display]="invalid('mensaje') ? 'block' : 'none'"
+          >El mensaje debe tener al menos 10 caracteres.</span
+        >
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="sending()">
+        {{ sending() ? 'Enviando...' : 'Enviar mensaje' }}
+      </button>
+    </form>
+  </div>
+</main>

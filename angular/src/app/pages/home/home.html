@@ -1,0 +1,39 @@
+<main>
+  <section class="home-hero" aria-labelledby="homeTitle">
+    <div class="home-hero-copy">
+      <span class="kicker">Portada / Actualidad</span>
+      <h1 id="homeTitle">Noticias del campus</h1>
+      <p class="page-subtitle">
+        <span class="copy-desktop"
+          >Una portada editorial para descubrir lo que ocurre en el Politécnico.</span
+        ><span class="copy-mobile"
+          >Portada optimizada para lectura y acción en una sola columna.</span
+        >
+      </p>
+      <a routerLink="/noticias" class="btn btn-primary">Ver noticias</a>
+    </div>
+    <div id="heroFeaturedNews" class="hero-featured-slot" aria-live="polite">
+      @if (principal(); as item) {
+        <img [src]="data.image(item)" [alt]="item.titulo" (error)="fallback($event)" />
+      } @else {
+        <div class="loading-state">
+          {{
+            data.error() ||
+              (data.loaded() ? 'No hay noticias disponibles.' : 'Cargando noticia destacada…')
+          }}
+        </div>
+      }
+    </div>
+  </section>
+
+  <section aria-labelledby="latestTitle">
+    <div class="section-heading">
+      <h2 id="latestTitle">Últimas noticias</h2>
+    </div>
+    <div id="contenedorNoticiasDestacadas" class="news-grid">
+      @for (item of restantes(); track item.id) {
+        <app-news-card [news]="item" variant="home" />
+      }
+    </div>
+  </section>
+</main>

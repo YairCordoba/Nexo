@@ -1,0 +1,16 @@
+:host {
+  display: contents;
+}
+.new-news {
+  margin-top: 36px;
+  width: 150px;
+}
+.form-title {
+  font-size: 20px;
+  margin-bottom: 18px;
+}
+.form-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}

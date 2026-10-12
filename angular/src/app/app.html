@@ -1,0 +1,9 @@
+<app-header />
+<router-outlet />
+@if (!url().startsWith('/admin') && !url().startsWith('/detalle')) {
+  <app-footer
+    [home]="url() === '/'"
+    [catalog]="url().startsWith('/noticias')"
+    [contact]="url().startsWith('/contacto')"
+  />
+}

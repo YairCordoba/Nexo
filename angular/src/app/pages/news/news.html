@@ -1,0 +1,52 @@
+<main class="page-list">
+  <section class="page-intro" aria-labelledby="newsTitle">
+    <span class="kicker">Sección / Noticias</span>
+    <h1 id="newsTitle">Noticias</h1>
+    <p class="page-subtitle">
+      <span class="copy-desktop">Listado filtrable con jerarquía clara y lectura rápida.</span
+      ><span class="copy-mobile">Filtros compactos y tarjetas apiladas para móvil.</span>
+    </p>
+    <label for="inputBusqueda" class="visually-hidden">Buscar noticias</label
+    ><input
+      type="search"
+      id="inputBusqueda"
+      class="visually-hidden"
+      aria-label="Buscar noticias"
+      (input)="updateSearch($event)"
+    />
+  </section>
+  <div class="filter-row">
+    <div class="categories-list" id="filtrosCategoria" aria-label="Filtrar por categoría">
+      @for (item of categories; track item) {
+        <button
+          type="button"
+          class="category-tag"
+          [class.active]="category() === item"
+          [attr.data-categoria]="item"
+          (click)="category.set(item)"
+        >
+          {{ item }}
+        </button>
+      }
+    </div>
+  </div>
+  <section class="news-grid" id="contenedorNoticias" aria-live="polite">
+    @if (data.error()) {
+      <div class="feedback feedback-error" role="alert">{{ data.error() }}</div>
+    }
+    @for (item of filtered(); track item.id) {
+      <app-news-card [news]="item" />
+    }
+  </section>
+  <div
+    id="mensajeVacio"
+    class="feedback"
+    style="margin-top: 18px"
+    [hidden]="filtered().length > 0 || !data.loaded()"
+  >
+    <div>
+      <h2>No se encontraron noticias</h2>
+      <p>Prueba con otra categoría o término.</p>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,38 @@
+<footer>
+  <div class="footer-content">
+    <div class="footer-col">
+      <a routerLink="/" class="logo" style="color: var(--color-primary)"
+        ><span class="logo-main">POLITÉCNICO</span></a
+      >
+      <p>
+        {{
+          home() || catalog()
+            ? 'Un espacio digital para descubrir noticias y
+        experiencias del campus universitario.'
+            : 'Un espacio digital para
+        descubrir noticias y experiencias del campus.'
+        }}
+      </p>
+    </div>
+    <div class="footer-col">
+      <h3>Explorar</h3>
+      <ul>
+        <li><a routerLink="/">Inicio</a></li>
+        <li><a routerLink="/noticias">Noticias</a></li>
+        <li>
+          <a routerLink="/favoritos">{{ home() ? 'Tus historias guardadas' : 'Favoritos' }}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Gestión</h3>
+      <ul>
+        <li><a routerLink="/contacto">Hablemos</a></li>
+        <li>
+          <a routerLink="/admin">{{ home() ? 'Panel de administración' : 'Administración' }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Politécnico.</span><span>Frontend Semana 5</span></div>
+</footer>

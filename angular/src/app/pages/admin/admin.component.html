@@ -1,0 +1,115 @@
+<main class="page-admin">
+  <section class="page-intro" aria-labelledby="adminTitle">
+    <span class="kicker">Gestión / Administración</span>
+    <h1 id="adminTitle">Panel de noticias</h1>
+    <p class="page-subtitle">Gestiona publicaciones y estados editoriales desde un único lugar.</p>
+  </section>
+  <section class="admin-stats" aria-label="Resumen editorial">
+    <div class="admin-stat">
+      <strong id="statPublished">{{ stats()[0] }}</strong
+      ><span>Publicadas</span>
+    </div>
+    <div class="admin-stat">
+      <strong id="statDrafts">{{ stats()[1] }}</strong
+      ><span>Borradores</span>
+    </div>
+    <div class="admin-stat">
+      <strong id="statReview">{{ stats()[2] }}</strong
+      ><span>Pendientes</span>
+    </div>
+  </section>
+  <section aria-labelledby="publicationsTitle">
+    <div class="section-heading">
+      <h2 id="publicationsTitle">Últimas publicaciones</h2>
+    </div>
+    <div id="listaAdmin" class="admin-list" aria-live="polite">
+      @if (service.error()) {
+        <div class="feedback feedback-error">{{ service.error() }}</div>
+      }
+      @for (news of sorted().slice(0, 3); track news.id; let index = $index) {
+        <div class="admin-row">
+          <span class="admin-row__title">{{ news.titulo }}</span>
+          <span [class]="'status-tag ' + service.status(news, index).className">{{
+            service.status(news, index).label
+          }}</span>
+          <span class="admin-row__date">{{ meta(news.fecha) }}</span>
+          <span class="admin-row__actions">
+            <button type="button" class="btn btn-outline" (click)="edit(news)">Editar</button>
+            <button type="button" class="btn btn-danger" (click)="remove(news.id)">Eliminar</button>
+          </span>
+        </div>
+      } @empty {
+        @if (service.loaded()) {
+          <div class="feedback">No hay publicaciones todavía.</div>
+        }
+      }
+    </div>
+  </section>
+  <button type="button" class="btn btn-primary new-news" id="btnNuevaNoticia" (click)="create()">
+    Nueva noticia
+  </button>
+  <section
+    id="formAdminPanel"
+    class="admin-form-panel"
+    [hidden]="!panelOpen()"
+    aria-labelledby="formAdminTitle"
+  >
+    <h2 id="formAdminTitle" class="form-title">
+      {{ editing() ? 'Editar noticia' : 'Crear noticia' }}
+    </h2>
+    <form id="formAdmin" [formGroup]="form" (ngSubmit)="submit()">
+      <input type="hidden" id="noticiaId" [value]="editing() ?? ''" />
+      <div class="admin-form-grid">
+        <div class="form-group">
+          <label for="titulo" class="form-label">Título</label
+          ><input type="text" id="titulo" class="form-control" formControlName="titulo" required />
+        </div>
+        <div class="form-group">
+          <label for="categoria" class="form-label">Categoría</label
+          ><select id="categoria" class="form-control" formControlName="categoria" required>
+            <option>Educación</option>
+            <option>Tecnología</option>
+            <option>Turismo</option>
+            <option>Comercio</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="autor" class="form-label">Autor</label
+          ><input type="text" id="autor" class="form-control" formControlName="autor" required />
+        </div>
+        <div class="form-group">
+          <label for="imagen" class="form-label">URL de imagen (opcional)</label
+          ><input type="text" id="imagen" class="form-control" formControlName="imagen" />
+        </div>
+        <div class="form-group form-group--wide">
+          <label for="resumen" class="form-label">Resumen</label
+          ><textarea
+            id="resumen"
+            class="form-control"
+            formControlName="resumen"
+            required
+          ></textarea>
+        </div>
+        <div class="form-group form-group--wide">
+          <label for="contenido" class="form-label">Contenido completo</label
+          ><textarea
+            id="contenido"
+            class="form-control"
+            formControlName="contenido"
+            required
+          ></textarea>
+        </div>
+      </div>
+      @if (form.touched && form.invalid) {
+        <p class="error-message" role="alert">Completa los campos obligatorios con texto válido.</p>
+      }
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" id="btnSubmitAdmin">
+          {{ editing() ? 'Actualizar' : 'Guardar' }}</button
+        ><button type="button" class="btn btn-outline" id="btnCancelarEdicion" (click)="cancel()">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </section>
+</main>

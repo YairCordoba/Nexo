@@ -1,0 +1,58 @@
+<main class="page-detail-main">
+  <section id="detalleNoticia" aria-live="polite">
+    @if (item(); as news) {
+      <div class="detail-layout">
+        <div class="detail-copy" #copy>
+          <span class="kicker">Lectura / Noticia</span>
+          <h1>{{ news.titulo }}</h1>
+          <p class="page-subtitle">
+            <span class="copy-desktop">Vista de lectura con foco en contenido y contexto.</span
+            ><span class="copy-mobile"
+              >Lectura móvil sin columnas forzadas ni texto superpuesto.</span
+            >
+          </p>
+          <p class="detail-meta">{{ meta(news.fecha) }} &nbsp;·&nbsp; Campus</p>
+        </div>
+        <div class="detail-media">
+          <img [src]="data.image(news)" [alt]="news.titulo" (error)="fallback($event)" />
+        </div>
+        <div class="detail-text" #text [style.top.px]="textTop()">
+          <p class="detail-lead">{{ news.resumen }}</p>
+          <p class="detail-body">{{ news.contenido || news.resumen }}</p>
+        </div>
+        <aside class="detail-aside">
+          <div class="quote-card">
+            <blockquote>Aprender también es encontrarnos.</blockquote>
+            <cite>Comunidad Nexo</cite>
+          </div>
+        </aside>
+        <section
+          class="detail-related"
+          #relatedElement
+          [style.top.px]="relatedTop()"
+          aria-labelledby="relatedTitle"
+        >
+          <h2 id="relatedTitle">Historias relacionadas</h2>
+          <div class="news-grid">
+            @for (other of related(); track other.id) {
+              <app-news-card [news]="other" />
+            }
+          </div>
+        </section>
+        <a routerLink="/noticias" class="btn btn-dark detail-back" [style.top.px]="backTop()"
+          >Volver a noticias</a
+        >
+      </div>
+    } @else {
+      <div class="feedback feedback-error">
+        {{
+          data.error() ||
+            (data.loaded()
+              ? 'Noticia no encontrada.'
+              : 'Cargando
+      historia…')
+        }}
+      </div>
+    }
+  </section>
+</main>
