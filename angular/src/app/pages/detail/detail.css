@@ -1,0 +1,208 @@
+:host {
+  display: contents;
+}
+.page-detail-main {
+  padding-top: 25px;
+}
+
+.detail-layout {
+  position: relative;
+  display: block;
+  min-height: 675px;
+}
+
+.detail-copy {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 360px;
+  min-width: 0;
+}
+
+.detail-copy .kicker {
+  margin-bottom: 13px;
+}
+
+.detail-copy h1 {
+  margin-bottom: 23px;
+}
+
+.detail-meta {
+  margin-top: 27px;
+  color: var(--color-text-light);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.detail-lead,
+.detail-body {
+  max-width: 360px;
+  font-size: 15px;
+  line-height: 19px;
+}
+
+.detail-text {
+  position: absolute;
+  top: 157px;
+  left: 0;
+  width: 360px;
+  min-width: 0;
+}
+
+.detail-lead {
+  margin-top: 19px;
+  color: var(--color-primary);
+}
+
+.detail-body {
+  margin-top: 24px;
+}
+
+.detail-media {
+  position: absolute;
+  top: 12px;
+  left: 398px;
+  width: 238px;
+  height: 210px;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background: var(--color-mint);
+}
+
+.detail-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: var(--color-mint);
+}
+
+.detail-media img[src$='educacion.svg'],
+.detail-media img[src$='tecnologia.svg'],
+.detail-media img[src$='turismo.svg'],
+.detail-media img[src$='comercio.svg'] {
+  object-fit: contain;
+  padding: 14px;
+}
+
+.detail-aside {
+  position: absolute;
+  top: 247px;
+  left: 398px;
+  width: 238px;
+}
+
+.quote-card {
+  min-height: 116px;
+  padding: 22px 18px;
+  border-radius: 14px;
+  background: var(--color-tertiary);
+}
+
+.quote-card blockquote {
+  color: var(--color-primary);
+  font-family: var(--font-heading);
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.quote-card cite {
+  display: block;
+  margin-top: 20px;
+  color: var(--color-text-light);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.detail-related {
+  position: absolute;
+  top: 407px;
+  left: 0;
+  width: 100%;
+  grid-column: 1 / -1;
+}
+
+.detail-related h2 {
+  margin-bottom: 18px;
+  font-size: 20px;
+}
+
+.detail-related .news-grid {
+  grid-template-columns: repeat(2, 200px);
+}
+
+.detail-back {
+  position: absolute;
+  top: 634px;
+  left: 0;
+  width: 156px;
+}
+@media (max-width: 699px) {
+  .news-grid,
+  .detail-related .news-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .detail-layout {
+    display: flex;
+    min-height: 0;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .detail-copy {
+    position: static;
+    width: 100%;
+    order: 1;
+  }
+
+  .detail-copy h1 {
+    margin-bottom: 28px;
+  }
+
+  .detail-meta {
+    margin-top: 10px;
+  }
+
+  .detail-lead,
+  .detail-body {
+    max-width: none;
+    font-size: 15px;
+    line-height: 19px;
+  }
+
+  .detail-media {
+    position: static;
+    order: 2;
+    width: 100%;
+    height: 170px;
+    margin-top: 18px;
+  }
+
+  .detail-text {
+    position: static;
+    order: 3;
+    width: 100%;
+  }
+
+  .detail-aside,
+  .detail-related,
+  .detail-back {
+    position: static;
+  }
+
+  .detail-aside,
+  .detail-related {
+    display: none;
+  }
+
+  .detail-back {
+    order: 4;
+    margin-top: 54px;
+  }
+}

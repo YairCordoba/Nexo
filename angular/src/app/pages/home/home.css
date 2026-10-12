@@ -1,0 +1,93 @@
+:host {
+  display: contents;
+}
+.home-hero {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 48px;
+  align-items: center;
+  margin: 0 0 58px;
+}
+
+.home-hero-copy {
+  min-width: 0;
+}
+
+.home-hero h1 {
+  margin-bottom: 23px;
+  font-size: 42px;
+}
+
+.home-hero .page-subtitle {
+  margin-bottom: 24px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.hero-featured-slot {
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background: var(--color-mint);
+}
+
+.hero-featured-slot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: var(--color-mint);
+}
+
+.hero-featured-slot img[src$='educacion.svg'],
+.hero-featured-slot img[src$='tecnologia.svg'],
+.hero-featured-slot img[src$='turismo.svg'],
+.hero-featured-slot img[src$='comercio.svg'] {
+  object-fit: contain;
+  object-position: center;
+  padding: 12px;
+}
+
+.home-categories {
+  margin-top: 36px;
+}
+
+.home-categories .section-heading {
+  margin-bottom: 15px;
+}
+@media (max-width: 699px) {
+  .home-hero {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    margin-bottom: 29px;
+  }
+
+  .home-hero-copy {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+
+  .home-hero h1 {
+    margin-bottom: 28px;
+  }
+
+  .home-hero .page-subtitle {
+    margin-bottom: 28px;
+  }
+
+  .home-hero-copy .btn {
+    margin-left: -8px;
+  }
+
+  .hero-featured-slot {
+    width: 100%;
+    height: 155px;
+  }
+
+  .home-categories {
+    margin-top: 30px;
+  }
+}

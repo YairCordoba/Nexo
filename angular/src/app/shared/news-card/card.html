@@ -1,0 +1,31 @@
+<article
+  class="news-card"
+  [class.news-card--home]="variant() === 'home'"
+  [attr.data-id]="news().id"
+>
+  <button
+    class="btn-fav"
+    [class.active]="data.isFavorite(news().id)"
+    type="button"
+    [attr.data-id]="news().id"
+    [title]="data.isFavorite(news().id) ? 'Quitar de favoritos' : 'Agregar a favoritos'"
+    [attr.aria-label]="data.isFavorite(news().id) ? 'Quitar de favoritos' : 'Agregar a favoritos'"
+    [attr.aria-pressed]="data.isFavorite(news().id)"
+    (click)="data.toggle(news())"
+  >
+    {{ data.isFavorite(news().id) ? '♥' : '♡' }}
+  </button>
+  <img
+    class="news-card__image"
+    [src]="data.image(news())"
+    alt=""
+    loading="lazy"
+    (error)="fallback($event)"
+  />
+  <div class="news-card__meta">{{ meta(news().fecha) }}</div>
+  <h3 class="news-card__title">
+    <a routerLink="/detalle" [queryParams]="{ id: news().id }">{{ news().titulo }}</a>
+  </h3>
+  <p class="news-card__body">{{ news().resumen || news().contenido || '' }}</p>
+  <a class="news-card__action" routerLink="/detalle" [queryParams]="{ id: news().id }">Ver más</a>
+</article>

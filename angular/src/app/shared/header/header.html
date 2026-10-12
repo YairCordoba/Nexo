@@ -1,0 +1,36 @@
+<header>
+  <div class="navbar">
+    <a routerLink="/" class="logo"><span class="logo-main">POLITÉCNICO</span></a>
+    <nav aria-label="Navegación principal">
+      <ul class="nav-links" id="navLinks" [class.show]="open()" (click)="open.set(false)">
+        <li><a routerLink="/" [class.active]="isActive('/')">Inicio</a></li>
+        <li>
+          <a routerLink="/noticias" [class.active]="isActive('/noticias') && !category">Noticias</a>
+        </li>
+        <li>
+          <a
+            routerLink="/noticias"
+            [queryParams]="{ categoria: 'todas' }"
+            [class.active]="isActive('/noticias') && category"
+            >Categorías</a
+          >
+        </li>
+        <li>
+          <a routerLink="/contacto" [class.active]="isActive('/contacto')">Contacto</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <button
+        class="nav-toggle"
+        id="navToggle"
+        type="button"
+        aria-controls="navLinks"
+        [attr.aria-expanded]="open()"
+        [attr.aria-label]="open() ? 'Cerrar menú' : 'Abrir menú'"
+        (click)="open.set(!open())"
+      ></button>
+      <a routerLink="/noticias" class="btn btn-primary">Explorar</a>
+    </div>
+  </div>
+</header>
